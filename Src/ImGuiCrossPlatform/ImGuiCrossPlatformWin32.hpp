@@ -1,7 +1,4 @@
-﻿// ImGuiCrossPlatform.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma comment(lib, "d3d11.lib")
+﻿#pragma comment(lib, "d3d11.lib")
 #pragma once
 
 #ifndef IMGUICROSSPLATFORMWIN32_HPP
