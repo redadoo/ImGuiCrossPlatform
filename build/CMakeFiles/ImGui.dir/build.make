@@ -111,38 +111,10 @@ CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_draw.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.s
 
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/ImGui.dir/flags.make
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: ../Src/ImGui/imgui_impl_opengl3.cpp
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp
-
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp > CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i
-
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s
-
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/ImGui.dir/flags.make
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: ../Src/ImGui/imgui_impl_sdl2.cpp
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp
-
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp > CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i
-
-CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s
-
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o: CMakeFiles/ImGui.dir/flags.make
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o: ../Src/ImGui/imgui_tables.cpp
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_tables.cpp
 
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.i: cmake_force
@@ -156,7 +128,7 @@ CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.s: cmake_force
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o: CMakeFiles/ImGui.dir/flags.make
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o: ../Src/ImGui/imgui_widgets.cpp
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_widgets.cpp
 
 CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.i: cmake_force
@@ -167,15 +139,43 @@ CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_widgets.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.s
 
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/ImGui.dir/flags.make
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: ../Src/ImGui/imgui_impl_opengl3.cpp
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp
+
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp > CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.i
+
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_opengl3.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.s
+
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/ImGui.dir/flags.make
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: ../Src/ImGui/imgui_impl_sdl2.cpp
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o: CMakeFiles/ImGui.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o -MF CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o -c /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp
+
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp > CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.i
+
+CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/edoardo/Desktop/ImGuiCrossPlatform/Src/ImGui/imgui_impl_sdl2.cpp -o CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.s
+
 # Object files for target ImGui
 ImGui_OBJECTS = \
 "CMakeFiles/ImGui.dir/Src/ImGui/imgui.cpp.o" \
 "CMakeFiles/ImGui.dir/Src/ImGui/imgui_demo.cpp.o" \
 "CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.o" \
-"CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o" \
-"CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o" \
 "CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o" \
-"CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o"
+"CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o" \
+"CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o" \
+"CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o"
 
 # External object files for target ImGui
 ImGui_EXTERNAL_OBJECTS =
@@ -183,10 +183,10 @@ ImGui_EXTERNAL_OBJECTS =
 libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui.cpp.o
 libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_demo.cpp.o
 libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.o
-libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o
-libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o
 libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.o
 libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.o
+libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_opengl3.cpp.o
+libImGui.a: CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_sdl2.cpp.o
 libImGui.a: CMakeFiles/ImGui.dir/build.make
 libImGui.a: CMakeFiles/ImGui.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libImGui.a"
