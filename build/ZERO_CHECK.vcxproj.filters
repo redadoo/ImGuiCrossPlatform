@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\build\CMakeFiles\b1c340743568318f19a29d25556a346a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A7567F3D-002C-3FF8-A509-E5977D42BEA6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

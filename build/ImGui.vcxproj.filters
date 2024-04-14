@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_dx11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_win32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imstb_rectpack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imstb_textedit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imstb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{67EF2042-B405-306D-BD49-5C3230F8CCE7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BEA39B72-EED1-386B-9EAC-90AE3444E959}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

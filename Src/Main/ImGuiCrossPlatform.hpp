@@ -9,3 +9,13 @@
 	#include "../ImGuiCrossPlatform/ImGuiCrossPlatformWin32.hpp"
 #endif 
 
+class ImGuiCrossPlatfrom
+{
+	public:
+	#ifdef __linux__
+
+	#elif _WIN32
+	
+	#endif 
+};
+

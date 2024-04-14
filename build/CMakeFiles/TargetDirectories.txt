@@ -1,4 +1,4 @@
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/ImGui.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/ImGuiCrossPlatform.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/edit_cache.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/rebuild_cache.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/build/CMakeFiles/ImGui.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/build/CMakeFiles/ImGuiCrossPlatform.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/build/CMakeFiles/ZERO_CHECK.dir

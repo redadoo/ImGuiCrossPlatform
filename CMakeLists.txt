@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 set (CMAKE_CXX_STANDARD 17)
 project(ImGuiCrossPlatform)
-
 set(IMGUI_PATH  "Src/ImGui")
 
 # Compile as static library 
@@ -26,20 +25,34 @@ file(GLOB IMGUI_SOURCES
     endif (UNIX)
 
     if (WIN32)
-
+        ${IMGUI_PATH}/imgui_impl_dx11.h
+        ${IMGUI_PATH}/imgui_impl_dx11.cpp
+        ${IMGUI_PATH}/imgui_impl_win32.h
+        ${IMGUI_PATH}/imgui_impl_win32.cpp
     endif (WIN32)
     )
-
 
 add_library("ImGui" STATIC ${IMGUI_SOURCES})
 target_include_directories("ImGui" PUBLIC ${IMGUI_PATH})
 
 ## Find dependencies
-find_package(OpenGL REQUIRED)
-find_package(SDL2 REQUIRED)
+if (UNIX)
+    find_package(OpenGL REQUIRED)
+    find_package(SDL2 REQUIRED)
+    include_directories( ${OPENGL_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
+endif (UNIX)
 
-include_directories( ${OPENGL_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
+if (UNIX)
+    add_executable(ImGuiCrossPlatform "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp")
+endif (UNIX)
+if (WIN32)
+    add_executable(ImGuiCrossPlatform WIN32 "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp")
+endif (WIN32)
 
-## Create main executable
-add_executable(ImGuiCrossPlatform "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformLinux.cpp")
-target_link_libraries(ImGuiCrossPlatform PUBLIC ImGui ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES})
+
+if (UNIX)
+    target_link_libraries(ImGuiCrossPlatform PUBLIC ImGui ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES})
+endif (UNIX)
+if (WIN32)
+    target_link_libraries(ImGuiCrossPlatform PUBLIC ImGui)
+endif (WIN32)

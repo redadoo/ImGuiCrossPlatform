@@ -1,12 +1,19 @@
-﻿// ImGuiCrossPlatform.cpp : Defines the entry point for the application.
-//
-
+﻿
 #include "ImGuiCrossPlatform.hpp"
 
+
+#ifdef __linux__
 int main()
 {
-	std::cout << "va ?\n";
-	ImGuiCrossPlatformLinux test = ImGuiCrossPlatformLinux();
-	test.Run();
-	return 0;
+	ImGuiCrossPlatformLinux::Run();
 }
+#elif _WIN32
+	int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
+	{
+		ImGuiCrossPlatformWin32::InitImGui();
+		ImGuiCrossPlatformWin32::Render();
+		ImGuiCrossPlatformWin32::CleanUp();
+		return 0;
+	}
+#endif 
+
