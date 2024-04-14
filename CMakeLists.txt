@@ -18,10 +18,17 @@ file(GLOB IMGUI_SOURCES
     ${IMGUI_PATH}/imgui_tables.cpp
     ${IMGUI_PATH}/imgui_widgets.cpp
 
-    ${IMGUI_PATH}/imgui_impl_sdl2.h
-    ${IMGUI_PATH}/imgui_impl_sdl2.cpp
-    ${IMGUI_PATH}/imgui_impl_opengl3.h
-    ${IMGUI_PATH}/imgui_impl_opengl3.cpp)
+    if (UNIX)
+        ${IMGUI_PATH}/imgui_impl_sdl2.h
+        ${IMGUI_PATH}/imgui_impl_sdl2.cpp
+        ${IMGUI_PATH}/imgui_impl_opengl3.h
+        ${IMGUI_PATH}/imgui_impl_opengl3.cpp
+    endif (UNIX)
+
+    if (WIN32)
+
+    endif (WIN32)
+    )
 
 
 add_library("ImGui" STATIC ${IMGUI_SOURCES})
