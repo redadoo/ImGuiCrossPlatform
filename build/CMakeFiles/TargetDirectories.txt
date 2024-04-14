@@ -1,4 +1,0 @@
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/ImGui.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/ImGuiCrossPlatform.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/edit_cache.dir
-/home/edoardo/Desktop/ImGuiCrossPlatform/build/CMakeFiles/rebuild_cache.dir

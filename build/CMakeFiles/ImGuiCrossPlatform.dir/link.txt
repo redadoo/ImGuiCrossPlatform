@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/ImGuiCrossPlatform.dir/Src/Main/ImGuiCrossPlatform.cpp.o CMakeFiles/ImGuiCrossPlatform.dir/Src/ImGuiCrossPlatform/ImGuiCrossPlatformLinux.cpp.o -o ImGuiCrossPlatform  libImGui.a /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libGLU.so -L/usr/lib/x86_64-linux-gnu  -lSDL2 
