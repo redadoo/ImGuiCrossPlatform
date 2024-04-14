@@ -43,9 +43,9 @@ if (UNIX)
 endif (UNIX)
 
 if (UNIX)
-    add_executable(ImGuiCrossPlatform "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformLinux.cpp")
+    add_executable(ImGuiCrossPlatform "Src/Main/main.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformLinux.cpp")
 elseif (WIN32)
-    add_executable(ImGuiCrossPlatform WIN32 "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp")
+    add_executable(ImGuiCrossPlatform WIN32 "Src/Main/main.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp")
 endif (WIN32)
 
 

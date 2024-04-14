@@ -1,0 +1,4 @@
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/out/build/x64-Debug/CMakeFiles/ImGui.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/out/build/x64-Debug/CMakeFiles/ImGuiCrossPlatform.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

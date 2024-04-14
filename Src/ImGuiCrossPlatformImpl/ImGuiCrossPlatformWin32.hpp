@@ -49,6 +49,7 @@ public:
 	static void InitImGui();
 	static void CleanUp();
 	static bool ShouldQuit();
+	static void Run();
 };
 
 #endif

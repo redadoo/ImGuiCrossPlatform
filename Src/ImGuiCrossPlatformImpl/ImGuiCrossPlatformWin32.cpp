@@ -196,6 +196,13 @@ bool ImGuiCrossPlatformWin32::ShouldQuit()
     return false;
 }
 
+void ImGuiCrossPlatformWin32::Run()
+{
+    ImGuiCrossPlatformWin32::InitImGui();
+    ImGuiCrossPlatformWin32::Render();
+    ImGuiCrossPlatformWin32::CleanUp();
+}
+
 void ImGuiCrossPlatformWin32::Render()
 {
     while (!bDone)

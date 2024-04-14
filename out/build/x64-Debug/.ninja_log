@@ -1,0 +1,16 @@
+# ninja log v5
+13	265	7348218400635437	CMakeFiles/ImGui.dir/Src/ImGui/imgui_tables.cpp.obj	4f4027b297141151
+6	291	7348218400903321	CMakeFiles/ImGui.dir/Src/ImGui/imgui_demo.cpp.obj	fdf2b8cebbaae532
+10	331	7348218401281921	CMakeFiles/ImGui.dir/Src/ImGui/imgui_draw.cpp.obj	7f4c493b658c9fc5
+16	355	7348218401545286	CMakeFiles/ImGui.dir/Src/ImGui/imgui_widgets.cpp.obj	d68cc7d7776fffe3
+606	652	7348218404471989	ImGui.lib	60d0f379f7392c6c
+23	334	7348218401330101	CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_win32.cpp.obj	9debe13c15bd226f
+19	497	7348218402973467	CMakeFiles/ImGui.dir/Src/ImGui/imgui_impl_dx11.cpp.obj	d68aab74183109ec
+3	605	7348218404037683	CMakeFiles/ImGui.dir/Src/ImGui/imgui.cpp.obj	3e3f29520310a9d9
+27	780	7348218405814696	CMakeFiles/ImGuiCrossPlatform.dir/Src/Main/ImGuiCrossPlatform.cpp.obj	1f0eb6156c5c4ad3
+30	789	7348218405874691	CMakeFiles/ImGuiCrossPlatform.dir/Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp.obj	ce04f84ff470b22a
+790	1974	7348218408120794	ImGuiCrossPlatform.exe	968a2838dcd19d0
+7	1005	7348415280669897	CMakeFiles/ImGuiCrossPlatform.dir/Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp.obj	edbf2a2c124c7fd7
+4	1006	7348415280669897	CMakeFiles/ImGuiCrossPlatform.dir/Src/Main/main.cpp.obj	e90e0b2a3754f74f
+10	1007	7348415280679910	CMakeFiles/ImGuiCrossPlatform.dir/Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp.obj	d33ea068aa76d943
+1007	2432	7348415282636400	ImGuiCrossPlatform.exe	4927b1e37beb586f
