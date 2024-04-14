@@ -1,6 +1,10 @@
 ﻿
 #include "ImGuiCrossPlatformLinux.hpp"
 
+SDL_WindowFlags ImGuiCrossPlatformLinux::windowFlags;
+SDL_Window* ImGuiCrossPlatformLinux::window;
+SDL_GLContext	ImGuiCrossPlatformLinux::glContext;
+bool			ImGuiCrossPlatformLinux::done;
 
 void ImGuiCrossPlatformLinux::InitImGuiCrossPlatformLinux()
 {
@@ -35,7 +39,6 @@ void ImGuiCrossPlatformLinux::InitImGuiCrossPlatformLinux()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
 
-	// From 2.0.18: Enable native IME.
 #ifdef SDL_HINT_IME_SHOW_UI
 	SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
 #endif
@@ -46,13 +49,13 @@ void ImGuiCrossPlatformLinux::InitImGuiCrossPlatformLinux()
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	windowFlags = (SDL_WindowFlags)(SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 	window = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, windowFlags);
-	if (window == nullptr)
+	if (ImGuiCrossPlatformLinux::window == nullptr)
 	{
 		printf("Error: SDL_CreateWindow(): %s\n", SDL_GetError());
 		return;
 	}
 
-	glContext = SDL_GL_CreateContext(window);
+	glContext = SDL_GL_CreateContext(ImGuiCrossPlatformLinux::window);
 	SDL_GL_MakeCurrent(window, glContext);
 	SDL_GL_SetSwapInterval(1); // Enable vsync
 
@@ -107,6 +110,7 @@ void ImGuiCrossPlatformLinux::Render()
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
+        ImGui::ShowDemoWindow();
 		ImGui::Render();
 		glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);

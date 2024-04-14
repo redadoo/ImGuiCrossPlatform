@@ -24,12 +24,6 @@ file(GLOB IMGUI_SOURCES
         ${IMGUI_PATH}/imgui_impl_opengl3.cpp
     endif (UNIX)
 
-    if (WIN32)
-        ${IMGUI_PATH}/imgui_impl_dx11.h
-        ${IMGUI_PATH}/imgui_impl_dx11.cpp
-        ${IMGUI_PATH}/imgui_impl_win32.h
-        ${IMGUI_PATH}/imgui_impl_win32.cpp
-    endif (WIN32)
     )
 
 add_library("ImGui" STATIC ${IMGUI_SOURCES})
@@ -43,7 +37,7 @@ if (UNIX)
 endif (UNIX)
 
 if (UNIX)
-    add_executable(ImGuiCrossPlatform "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp")
+    add_executable(ImGuiCrossPlatform "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformLinux.cpp")
 endif (UNIX)
 if (WIN32)
     add_executable(ImGuiCrossPlatform WIN32 "Src/Main/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatformWin32.cpp")

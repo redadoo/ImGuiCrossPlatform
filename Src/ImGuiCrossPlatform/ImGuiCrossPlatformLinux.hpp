@@ -18,18 +18,18 @@
 class ImGuiCrossPlatformLinux
 {
 public:
-	void				Run();
-	bool				done;
-	SDL_Window*			window;
-	SDL_WindowFlags 	windowFlags;
-	ImGuiConfigFlags   	ConfFlags;
-	SDL_GLContext		glContext;
+	static void				Run();
 
 private:
-	void Render();
-	void InitImGuiCrossPlatformLinux();
-	void CleanUp();
-	void ShouldQuit();
+	static bool				done;
+	static SDL_Window*		window;
+	static SDL_WindowFlags 	windowFlags;
+	static ImGuiConfigFlags	ConfFlags;
+	static SDL_GLContext	glContext;
+	static void Render();
+	static void InitImGuiCrossPlatformLinux();
+	static void CleanUp();
+	static void ShouldQuit();
 
 };
 
