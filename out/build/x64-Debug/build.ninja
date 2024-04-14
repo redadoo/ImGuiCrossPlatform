@@ -73,22 +73,6 @@ build CMakeFiles\ImGui.dir\Src\ImGui\imgui_draw.cpp.obj: CXX_COMPILER__ImGui_uns
   TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
   TARGET_PDB = ImGui.pdb
 
-build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_dx11.cpp || cmake_object_order_depends_target_ImGui
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
-  OBJECT_DIR = CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = CMakeFiles\ImGui.dir\Src\ImGui
-  TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = ImGui.pdb
-
-build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_win32.cpp || cmake_object_order_depends_target_ImGui
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
-  OBJECT_DIR = CMakeFiles\ImGui.dir
-  OBJECT_FILE_DIR = CMakeFiles\ImGui.dir\Src\ImGui
-  TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
-  TARGET_PDB = ImGui.pdb
-
 build CMakeFiles\ImGui.dir\Src\ImGui\imgui_tables.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_tables.cpp || cmake_object_order_depends_target_ImGui
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
   INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
@@ -105,6 +89,22 @@ build CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj: CXX_COMPILER__ImGui_
   TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
   TARGET_PDB = ImGui.pdb
 
+build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_dx11.cpp || cmake_object_order_depends_target_ImGui
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
+  OBJECT_DIR = CMakeFiles\ImGui.dir
+  OBJECT_FILE_DIR = CMakeFiles\ImGui.dir\Src\ImGui
+  TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
+  TARGET_PDB = ImGui.pdb
+
+build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui\imgui_impl_win32.cpp || cmake_object_order_depends_target_ImGui
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
+  OBJECT_DIR = CMakeFiles\ImGui.dir
+  OBJECT_FILE_DIR = CMakeFiles\ImGui.dir\Src\ImGui
+  TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
+  TARGET_PDB = ImGui.pdb
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target ImGui
@@ -113,7 +113,7 @@ build CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj: CXX_COMPILER__ImGui_
 #############################################
 # Link the static library ImGui.lib
 
-build ImGui.lib: CXX_STATIC_LIBRARY_LINKER__ImGui_Debug CMakeFiles\ImGui.dir\Src\ImGui\imgui.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_demo.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_draw.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_tables.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj
+build ImGui.lib: CXX_STATIC_LIBRARY_LINKER__ImGui_Debug CMakeFiles\ImGui.dir\Src\ImGui\imgui.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_demo.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_draw.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_tables.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = CMakeFiles\ImGui.dir

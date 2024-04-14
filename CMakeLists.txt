@@ -15,18 +15,25 @@ file(GLOB IMGUI_SOURCES
     ${IMGUI_PATH}/imstb_textedit.h
     ${IMGUI_PATH}/imstb_truetype.h
     ${IMGUI_PATH}/imgui_tables.cpp
-    ${IMGUI_PATH}/imgui_widgets.cpp
+    ${IMGUI_PATH}/imgui_widgets.cpp)
 
-    if (UNIX)
-        ${IMGUI_PATH}/imgui_impl_sdl2.h
-        ${IMGUI_PATH}/imgui_impl_sdl2.cpp
-        ${IMGUI_PATH}/imgui_impl_opengl3.h
-        ${IMGUI_PATH}/imgui_impl_opengl3.cpp
-    endif (UNIX)
 
-    )
+if (UNIX)
+    file(GLOB IMGUI_BACKEND_SOURCES
+    ${IMGUI_PATH}/imgui_impl_sdl2.h
+    ${IMGUI_PATH}/imgui_impl_sdl2.cpp
+    ${IMGUI_PATH}/imgui_impl_opengl3.h
+    ${IMGUI_PATH}/imgui_impl_opengl3.cpp)
+endif (UNIX)
+if (WIN32)
+    file(GLOB IMGUI_BACKEND_SOURCES
+    ${IMGUI_PATH}/imgui_impl_dx11.h
+    ${IMGUI_PATH}/imgui_impl_dx11.cpp
+    ${IMGUI_PATH}/imgui_impl_win32.h
+    ${IMGUI_PATH}/imgui_impl_win32.cpp)
+endif (WIN32)
 
-add_library("ImGui" STATIC ${IMGUI_SOURCES})
+add_library("ImGui" STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES})
 target_include_directories("ImGui" PUBLIC ${IMGUI_PATH})
 
 ## Find dependencies
