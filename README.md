@@ -8,6 +8,8 @@
 ## Table of Contents
 
 - [About](#about)
+- [Features](#Features)
+- [Features in Development](#Features)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Ressources](#ressources)
@@ -15,6 +17,15 @@
 ## About
 
 ImGuiCrossPlatform is a project aimed at facilitating cross compilation for the [ImGui](https://github.com/ocornut/imgui) library on windows and linux using cmake.
+
+## Features
+
+*  Cross-compile linux/Windows imgui library
+*  Demo application
+
+## Features in development
+
+* Cross-compile image struct to use in imgui
 
 ## Prerequisites
 * Linux:
@@ -72,5 +83,5 @@ cmake ..
 ## Ressources
 
 [ImGui](https://github.com/ocornut/imgui) is a popular graphical user interface library written in C++.
-
+[stb_image](https://github.com/nothings/stb/blob/master/stb_image.h) image loading/decoding from file/memory: JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC
   
