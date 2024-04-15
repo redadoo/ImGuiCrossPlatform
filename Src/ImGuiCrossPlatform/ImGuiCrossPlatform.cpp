@@ -44,7 +44,7 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
 	stbi_image_free(image_data);
 
-	*out_texture = image_texture;
+	image.texture = image_texture; 
 	*out_width = image_width;
 	*out_height = image_height;
 #elif _WIN32
@@ -88,7 +88,6 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 
 Image::Image()
 {
-	this->texture = NULL;
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
 	LoadTextureFromFile("ciao", *this, &myImageWidth, &myImageHeight);
