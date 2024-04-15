@@ -196,14 +196,14 @@ bool ImGuiCrossPlatformWin32::ShouldQuit()
     return false;
 }
 
-void ImGuiCrossPlatformWin32::Run()
+void ImGuiCrossPlatformWin32::Run(Application* app)
 {
     ImGuiCrossPlatformWin32::InitImGui();
-    ImGuiCrossPlatformWin32::Render();
+    ImGuiCrossPlatformWin32::Render(app);
     ImGuiCrossPlatformWin32::CleanUp();
 }
 
-void ImGuiCrossPlatformWin32::Render()
+void ImGuiCrossPlatformWin32::Render(Application* app)
 {
     while (!bDone)
     {
@@ -213,7 +213,7 @@ void ImGuiCrossPlatformWin32::Render()
         ImGui_ImplWin32_NewFrame();
         
         ImGui::NewFrame();
-        ImGui::ShowDemoWindow();
+        app->Main();
         ImGui::Render();
 
         const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };

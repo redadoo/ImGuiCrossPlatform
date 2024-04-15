@@ -105,6 +105,14 @@ build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj: CXX_COMPILER__ImG
   TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
   TARGET_PDB = ImGui.pdb
 
+build CMakeFiles\ImGui.dir\Src\DemoApplication\DemoApplication.cpp.obj: CXX_COMPILER__ImGui_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\DemoApplication\DemoApplication.cpp || cmake_object_order_depends_target_ImGui
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
+  OBJECT_DIR = CMakeFiles\ImGui.dir
+  OBJECT_FILE_DIR = CMakeFiles\ImGui.dir\Src\DemoApplication
+  TARGET_COMPILE_PDB = CMakeFiles\ImGui.dir\ImGui.pdb
+  TARGET_PDB = ImGui.pdb
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target ImGui
@@ -113,7 +121,7 @@ build CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj: CXX_COMPILER__ImG
 #############################################
 # Link the static library ImGui.lib
 
-build ImGui.lib: CXX_STATIC_LIBRARY_LINKER__ImGui_Debug CMakeFiles\ImGui.dir\Src\ImGui\imgui.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_demo.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_draw.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_tables.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj
+build ImGui.lib: CXX_STATIC_LIBRARY_LINKER__ImGui_Debug CMakeFiles\ImGui.dir\Src\ImGui\imgui.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_demo.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_draw.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_tables.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_widgets.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_dx11.cpp.obj CMakeFiles\ImGui.dir\Src\ImGui\imgui_impl_win32.cpp.obj CMakeFiles\ImGui.dir\Src\DemoApplication\DemoApplication.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = CMakeFiles\ImGui.dir
@@ -156,6 +164,14 @@ build CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatformImpl\ImGuiCrossPla
   TARGET_COMPILE_PDB = CMakeFiles\ImGuiCrossPlatform.dir\
   TARGET_PDB = ImGuiCrossPlatform.pdb
 
+build CMakeFiles\ImGuiCrossPlatform.dir\Src\DemoApplication\DemoApplication.cpp.obj: CXX_COMPILER__ImGuiCrossPlatform_unscanned_Debug C$:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\DemoApplication\DemoApplication.cpp || cmake_object_order_depends_target_ImGuiCrossPlatform
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Users\edoar\Desktop\GitHub\ImGuiCrossPlatform\Src\ImGui
+  OBJECT_DIR = CMakeFiles\ImGuiCrossPlatform.dir
+  OBJECT_FILE_DIR = CMakeFiles\ImGuiCrossPlatform.dir\Src\DemoApplication
+  TARGET_COMPILE_PDB = CMakeFiles\ImGuiCrossPlatform.dir\
+  TARGET_PDB = ImGuiCrossPlatform.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ImGuiCrossPlatform
@@ -164,7 +180,7 @@ build CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatformImpl\ImGuiCrossPla
 #############################################
 # Link the executable ImGuiCrossPlatform.exe
 
-build ImGuiCrossPlatform.exe: CXX_EXECUTABLE_LINKER__ImGuiCrossPlatform_Debug CMakeFiles\ImGuiCrossPlatform.dir\Src\Main\main.cpp.obj CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatform\ImGuiCrossPlatform.cpp.obj CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatformImpl\ImGuiCrossPlatformWin32.cpp.obj | ImGui.lib || ImGui.lib
+build ImGuiCrossPlatform.exe: CXX_EXECUTABLE_LINKER__ImGuiCrossPlatform_Debug CMakeFiles\ImGuiCrossPlatform.dir\Src\Main\main.cpp.obj CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatform\ImGuiCrossPlatform.cpp.obj CMakeFiles\ImGuiCrossPlatform.dir\Src\ImGuiCrossPlatformImpl\ImGuiCrossPlatformWin32.cpp.obj CMakeFiles\ImGuiCrossPlatform.dir\Src\DemoApplication\DemoApplication.cpp.obj | ImGui.lib || ImGui.lib
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
   LINK_LIBRARIES = ImGui.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

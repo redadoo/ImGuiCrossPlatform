@@ -87,7 +87,8 @@
 				6,
 				7,
 				11,
-				13
+				13,
+				16
 			]
 		}
 	],
@@ -112,7 +113,8 @@
 				9,
 				10,
 				12,
-				14
+				14,
+				15
 			]
 		},
 		{
@@ -125,7 +127,8 @@
 				6,
 				7,
 				11,
-				13
+				13,
+				16
 			]
 		}
 	],
@@ -212,6 +215,17 @@
 			"backtrace" : 2,
 			"path" : "Src/ImGui/imgui_impl_win32.h",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Src/ImGui/stb_image.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Src/DemoApplication/DemoApplication.cpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "STATIC_LIBRARY"

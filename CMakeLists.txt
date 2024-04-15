@@ -33,24 +33,29 @@ elseif (WIN32)
     ${IMGUI_PATH}/imgui_impl_win32.cpp)
 endif (WIN32)
 
-add_library("ImGui" STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES})
+add_library("ImGui" STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES} "Src/ImGui/stb_image.h" "Src/DemoApplication/DemoApplication.cpp")
 target_include_directories("ImGui" PUBLIC ${IMGUI_PATH})
+
 
 if (UNIX)
     find_package(OpenGL REQUIRED)
     find_package(SDL2 REQUIRED)
+
     include_directories( ${OPENGL_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
-endif (UNIX)
-
-if (UNIX)
-    add_executable(ImGuiCrossPlatform "Src/Main/main.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformLinux.cpp")
-elseif (WIN32)
-    add_executable(ImGuiCrossPlatform WIN32 "Src/Main/main.cpp" "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp")
-endif (WIN32)
-
-
-if (UNIX)
+    
+    add_executable(ImGuiCrossPlatform 
+        "Src/Main/main.cpp" 
+        "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" 
+        "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformLinux.cpp"
+    )
     target_link_libraries(ImGuiCrossPlatform PUBLIC ImGui ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES})
 elseif (WIN32)
+    add_executable(ImGuiCrossPlatform WIN32 
+        "Src/Main/main.cpp" 
+        "Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp" 
+        "Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp"
+        "Src/DemoApplication/DemoApplication.cpp")
     target_link_libraries(ImGuiCrossPlatform PUBLIC ImGui)
 endif (WIN32)
+
+

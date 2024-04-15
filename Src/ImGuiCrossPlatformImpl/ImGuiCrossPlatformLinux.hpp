@@ -14,11 +14,12 @@
 #include <SDL_opengl.h>
 #endif
 #include <iostream>
+#include "../Application/Application.hpp"
 
 class ImGuiCrossPlatformLinux
 {
 public:
-	static void				Run();
+	static void				Run(Application* app);
 
 private:
 	static bool				done;

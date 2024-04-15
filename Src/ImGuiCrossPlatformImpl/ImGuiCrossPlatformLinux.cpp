@@ -98,7 +98,7 @@ void ImGuiCrossPlatformLinux::ShouldQuit()
 	}
 }
 
-void ImGuiCrossPlatformLinux::Render()
+void ImGuiCrossPlatformLinux::Render(Application* app)
 {
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
@@ -110,7 +110,7 @@ void ImGuiCrossPlatformLinux::Render()
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
-        ImGui::ShowDemoWindow();
+		app->Main();
 		ImGui::Render();
 		glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
@@ -141,7 +141,7 @@ void ImGuiCrossPlatformLinux::CleanUp()
 	SDL_Quit();
 }
 
-void ImGuiCrossPlatformLinux::Run()
+void ImGuiCrossPlatformLinux::Run(Application* app)
 {
 	InitImGuiCrossPlatformLinux();
 	Render();

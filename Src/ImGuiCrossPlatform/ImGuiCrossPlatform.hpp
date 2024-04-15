@@ -12,6 +12,6 @@
 class ImGuiCrossPlatfrom
 {
 	public:
-		static void Run();
+		static void Run(Application *app);
 };
 
