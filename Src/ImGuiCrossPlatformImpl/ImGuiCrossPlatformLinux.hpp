@@ -16,6 +16,7 @@
 #include <iostream>
 #include "../Application/Application.hpp"
 
+
 class ImGuiCrossPlatformLinux
 {
 public:
