@@ -27,7 +27,7 @@ private:
 	static SDL_WindowFlags 	windowFlags;
 	static ImGuiConfigFlags	ConfFlags;
 	static SDL_GLContext	glContext;
-	static void Render();
+	static void Render(Application* app);
 	static void InitImGuiCrossPlatformLinux();
 	static void CleanUp();
 	static void ShouldQuit();

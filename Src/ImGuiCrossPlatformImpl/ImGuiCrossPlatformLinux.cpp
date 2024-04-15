@@ -144,6 +144,6 @@ void ImGuiCrossPlatformLinux::CleanUp()
 void ImGuiCrossPlatformLinux::Run(Application* app)
 {
 	InitImGuiCrossPlatformLinux();
-	Render();
+	Render(app);
 	CleanUp(); 
 }
