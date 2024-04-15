@@ -38,7 +38,7 @@ ImGuiCrossPlatform is a project aimed at facilitating cross compilation for the 
   ```bash
   * cmake
   * visual studio
-  * d3d11
+  * DirectX11 
   ```
 ## Usage
 
