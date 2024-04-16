@@ -19,7 +19,7 @@ ImGuiCrossPlatform is a project aimed at facilitating cross compilation for the 
 
 ## Features
 
-*  Cross-compile linux/Windows imgui library
+*  Cross-compile linux(opengl3,sdl2)/Windows(d3d11) imgui library
 *  Demo application
 * Cross-compile image struct to use in imgui
 
