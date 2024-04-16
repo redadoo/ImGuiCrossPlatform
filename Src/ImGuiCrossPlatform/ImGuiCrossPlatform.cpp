@@ -100,7 +100,11 @@ Image::Image(const char* _filePath)
 
 ImTextureID Image::GetTexture() const
 {
-	return (void*)this->texture;
+	#ifdef __linux__
+		return (void*)(intptr_t)this->texture;
+	#elif _WIN32
+		return (void*)this->texture;
+	#endif
 }
 
 void Image::Release()

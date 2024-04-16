@@ -2,11 +2,13 @@
 
 void CreateConsole()
 {
-	FILE* fDummy;
-	AllocConsole();
-	freopen_s(&fDummy, "CONIN$", "r", stdin);
-	freopen_s(&fDummy, "CONOUT$", "w", stderr);
-	freopen_s(&fDummy, "CONOUT$", "w", stdout);
+	#ifdef _WIN32
+		FILE* fDummy;
+		AllocConsole();
+		freopen_s(&fDummy, "CONIN$", "r", stdin);
+		freopen_s(&fDummy, "CONOUT$", "w", stderr);
+		freopen_s(&fDummy, "CONOUT$", "w", stdout);
+	#endif
 }
 
 void DemoApplication::Main()
