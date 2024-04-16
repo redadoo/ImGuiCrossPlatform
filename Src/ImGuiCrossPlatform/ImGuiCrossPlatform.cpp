@@ -95,7 +95,7 @@ Image::Image(const char* _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	filePath = _filePath;
+	filePath = filePath;
 }
 
 ImTextureID Image::GetTexture() const
