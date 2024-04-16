@@ -4,13 +4,18 @@
 
 #include "../ImGui/imgui.h"
 #include "../Application/Application.hpp"
+#include "../ImGuiCrossPlatform/ImGuiCrossPlatform.hpp"
 
 class DemoApplication : public Application
 {
 	public:
-		void Main();
+		bool	x;
+		Image	*image;
 
 		DemoApplication(void);
+
+		void Main();
+
 };
 
 

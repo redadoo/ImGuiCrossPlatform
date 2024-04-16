@@ -86,16 +86,21 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	return true;
 }
 
-Image::Image()
+Image::~Image()
+{
+	this->Release();
+}
+
+Image::Image(const char* _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	LoadTextureFromFile("ciao", *this, &myImageWidth, &myImageHeight);
+	filePath = _filePath;
 }
 
 ImTextureID Image::GetTexture() const
 {
-	return (void*)(intptr_t)this->texture;
+	return (void*)this->texture;
 }
 
 void Image::Release()
