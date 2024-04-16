@@ -8,9 +8,11 @@
 
 class DemoApplication : public Application
 {
-	public:
+	private:
 		bool	x;
 		Image	*image;
+
+	public:
 
 		DemoApplication(void);
 

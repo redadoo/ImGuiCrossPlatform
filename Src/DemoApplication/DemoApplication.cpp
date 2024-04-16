@@ -13,8 +13,8 @@ void CreateConsole()
 
 void DemoApplication::Main()
 {
-
-	ImGui::Begin("Texture Test");
+	ImGui::SetNextWindowSize({ 1280, 800 }, ImGuiCond_Once);
+	ImGui::Begin("Texture Test1");
 	
 	if (image == NULL)
 	{
@@ -23,7 +23,6 @@ void DemoApplication::Main()
 	}
 	else
 	{
-		ImGui::Text("luca");
 		ImGui::Text("pointer = %p", image->GetTexture());
 		ImGui::Text("size = %d x %d", image->myImageWidth, image->myImageHeight);
 		ImGui::Image(image->GetTexture(), ImVec2(200, 200));
@@ -31,7 +30,7 @@ void DemoApplication::Main()
 	ImGui::End();
 }
 
-DemoApplication::DemoApplication(void)
+DemoApplication::DemoApplication( void )
 {
 	CreateConsole();
 
