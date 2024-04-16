@@ -9,7 +9,6 @@
 
 - [About](#about)
 - [Features](#Features)
-- [Features in Development](#Features)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [Ressources](#ressources)
@@ -22,9 +21,6 @@ ImGuiCrossPlatform is a project aimed at facilitating cross compilation for the 
 
 *  Cross-compile linux/Windows imgui library
 *  Demo application
-
-## Features in development
-
 * Cross-compile image struct to use in imgui
 
 ## Prerequisites
