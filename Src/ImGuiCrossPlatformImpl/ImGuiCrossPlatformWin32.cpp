@@ -209,7 +209,7 @@ void ImGuiCrossPlatformWin32::Render(Application* app)
 {
     while (!bDone)
     {
-        if (ShouldQuit() == true) break;
+        if (ShouldQuit() == true || app->IsClosed() == true) break;
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();

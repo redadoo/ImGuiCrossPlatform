@@ -31,7 +31,7 @@ private:
 	static void Render(Application* app);
 	static void InitImGuiCrossPlatformLinux();
 	static void CleanUp();
-	static void ShouldQuit();
+	static bool ShouldQuit();
 
 };
 

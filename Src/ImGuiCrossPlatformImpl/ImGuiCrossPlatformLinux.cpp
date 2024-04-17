@@ -85,16 +85,16 @@ void ImGuiCrossPlatformLinux::InitImGuiCrossPlatformLinux()
 	ImGui_ImplOpenGL3_Init(glsl_version);
 }
 
-void ImGuiCrossPlatformLinux::ShouldQuit()
+bool ImGuiCrossPlatformLinux::ShouldQuit()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
 		ImGui_ImplSDL2_ProcessEvent(&event);
 		if (event.type == SDL_QUIT)
-			done = true;
+			return true;
 		if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE && event.window.windowID == SDL_GetWindowID(window))
-			done = true;
+			return true;
 	}
 }
 
@@ -105,7 +105,7 @@ void ImGuiCrossPlatformLinux::Render(Application* app)
 
 	while (!done)
 	{
-		ShouldQuit();
+		if (ShouldQuit() == true || app->IsClosed() == true) break;
 		
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplSDL2_NewFrame();
