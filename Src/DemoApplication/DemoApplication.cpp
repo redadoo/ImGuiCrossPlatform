@@ -18,9 +18,15 @@ void DemoApplication::Main()
 	ImGui::End();
 }
 
+bool DemoApplication::IsClosed()
+{
+	return this->x;
+}
+
 DemoApplication::DemoApplication( void )
 {
 	CreateConsole();
 
 	image = NULL;
+	this->x = false;
 }

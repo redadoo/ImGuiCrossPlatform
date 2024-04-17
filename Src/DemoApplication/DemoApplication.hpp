@@ -17,6 +17,7 @@ class DemoApplication : public Application
 		DemoApplication(void);
 
 		void Main();
+		bool IsClosed();
 
 };
 

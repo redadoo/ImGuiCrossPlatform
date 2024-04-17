@@ -8,6 +8,7 @@ class Application
 {
 	public:
 		virtual void Main() = 0;
+		virtual bool IsClosed();
 };
 
 #endif 
