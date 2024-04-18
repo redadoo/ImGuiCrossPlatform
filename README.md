@@ -79,5 +79,6 @@ cmake ..
 ## Ressources
 
 [ImGui](https://github.com/ocornut/imgui) is a popular graphical user interface library written in C++.
+
 [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h) image loading/decoding from file/memory: JPG, PNG, TGA, BMP, PSD, GIF, HDR, PIC
   
