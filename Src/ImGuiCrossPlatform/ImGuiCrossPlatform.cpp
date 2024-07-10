@@ -65,7 +65,7 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	subResource.pSysMem = image_data;
 	subResource.SysMemPitch = desc.Width * 4;
 	subResource.SysMemSlicePitch = 0;
-	imguiCrossPlatformWin32::pd3dDevice->CreateTexture2D(&desc, &subResource, &pTexture);
+	ImGuiCrossPlatformWin32::pd3dDevice->CreateTexture2D(&desc, &subResource, &pTexture);
 
 	// Create texture view
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
@@ -75,7 +75,7 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	srvDesc.Texture2D.MipLevels = desc.MipLevels;
 	srvDesc.Texture2D.MostDetailedMip = 0;	
 	ID3D11ShaderResourceView* tmp = NULL;
-	imguiCrossPlatformWin32::pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &tmp);
+	ImGuiCrossPlatformWin32::pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &tmp);
 	image.texture = tmp;
 	pTexture->Release();
 	*out_width = image_width;

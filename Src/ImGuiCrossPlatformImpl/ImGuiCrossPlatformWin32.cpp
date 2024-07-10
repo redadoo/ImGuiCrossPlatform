@@ -26,9 +26,9 @@ bool ImGuiCrossPlatformWin32::CreateDeviceD3D(HWND hWnd)
     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
     UINT createDeviceFlags = 0;
-    #ifdef _DEBUG
-        createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-    #endif
+#ifdef _DEBUG
+    createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
     D3D_FEATURE_LEVEL featureLevel;
     const D3D_FEATURE_LEVEL featureLevelArray[2] = { D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_0, };
     if (D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags, featureLevelArray, 2, D3D11_SDK_VERSION, &sd, &pSwapChain, &pd3dDevice, &featureLevel, &pd3dDeviceContext) != S_OK)
@@ -86,7 +86,7 @@ void ImGuiCrossPlatformWin32::CleanupDeviceD3D()
 
 LRESULT WINAPI ImGuiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    if (imgui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
 
     switch (msg)
@@ -110,7 +110,7 @@ LRESULT WINAPI ImGuiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wPar
         return 0;
 
     case WM_DPICHANGED:
-        if (imgui::GetIO().ConfigFlags & imguiConfigFlags_DpiEnableScaleViewports)
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)
         {
             const RECT* suggested_rect = (RECT*)lParam;
             ::SetWindowPos(hWnd, nullptr, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
@@ -123,12 +123,12 @@ LRESULT WINAPI ImGuiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wPar
     return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-void ImGuiCrossPlatformWin32::Initimgui()
+void ImGuiCrossPlatformWin32::InitImGui()
 {
-    imgui_ImplWin32_EnableDpiAwareness();
-    ImGuiCrossPlatformWin32::wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, _T("imgui Standalone"), nullptr };
+    ImGui_ImplWin32_EnableDpiAwareness();
+    ImGuiCrossPlatformWin32::wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, _T("ImGui Standalone"), nullptr };
     ::RegisterClassEx(&ImGuiCrossPlatformWin32::wc);
-    ImGuiCrossPlatformWin32::hwnd = ::CreateWindow(ImGuiCrossPlatformWin32::wc.lpszClassName, _T("imgui Standalone"), WS_OVERLAPPEDWINDOW, 100, 100, 50, 50, NULL, NULL, ImGuiCrossPlatformWin32::wc.hInstance, NULL);
+    ImGuiCrossPlatformWin32::hwnd = ::CreateWindow(ImGuiCrossPlatformWin32::wc.lpszClassName, _T("ImGui Standalone"), WS_OVERLAPPEDWINDOW, 100, 100, 50, 50, NULL, NULL, ImGuiCrossPlatformWin32::wc.hInstance, NULL);
 
     if (!CreateDeviceD3D(hwnd))
     {
@@ -146,34 +146,34 @@ void ImGuiCrossPlatformWin32::Initimgui()
     GetMonitorInfo(monitor, &info);
     const int monitor_height = info.rcMonitor.bottom - info.rcMonitor.top;
 
-    imgui_CHECKVERSION();
-    imgui::CreateContext();
-    imguiIO& io = imgui::GetIO(); (void)io;
-    io.ConfigFlags |= imguiConfigFlags_NavEnableKeyboard;
-    io.ConfigFlags |= imguiConfigFlags_ViewportsEnable;
-    io.ConfigFlags |= imguiConfigFlags_DockingEnable;
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-    imgui::StyleColorsDark();
+    ImGui::StyleColorsDark();
 
-    imguiStyle& style = imgui::GetStyle();
-    if (io.ConfigFlags & imguiConfigFlags_ViewportsEnable)
+    ImGuiStyle& style = ImGui::GetStyle();
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
     {
         style.WindowRounding = 4.0f;
-        style.Colors[imguiCol_WindowBg].w = 1.0f;
+        style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
-    imgui_ImplWin32_Init(hwnd);
-    imgui_ImplDX11_Init(pd3dDevice, pd3dDeviceContext);
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(pd3dDevice, pd3dDeviceContext);
 
     if (monitor_height > 1080)
     {
         const float fScale = 2.0f;
         ImFontConfig cfg;
         cfg.SizePixels = 13 * fScale;
-        imgui::GetIO().Fonts->AddFontDefault(&cfg);
+        ImGui::GetIO().Fonts->AddFontDefault(&cfg);
     }
 
-    imgui::GetIO().IniFilename = nullptr;
+    ImGui::GetIO().IniFilename = nullptr;
     ConfFlags = io.ConfigFlags;
 }
 
@@ -200,7 +200,7 @@ bool ImGuiCrossPlatformWin32::ShouldQuit()
 
 void ImGuiCrossPlatformWin32::Run(Application* app)
 {
-    ImGuiCrossPlatformWin32::Initimgui();
+    ImGuiCrossPlatformWin32::InitImGui();
     ImGuiCrossPlatformWin32::Render(app);
     ImGuiCrossPlatformWin32::CleanUp();
 }
@@ -209,26 +209,26 @@ void ImGuiCrossPlatformWin32::Render(Application* app)
 {
     while (!bDone)
     {
-        if (ShouldQuit() == true || app->IsClosed() == true) break;
+        if (ShouldQuit() == true || app->IsOpen() == false) break;
 
-        imgui_ImplDX11_NewFrame();
-        imgui_ImplWin32_NewFrame();
-        
-        imgui::NewFrame();
+        ImGui_ImplDX11_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+
+        ImGui::NewFrame();
         app->Main();
-        imgui::Render();
+        ImGui::Render();
 
         const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
 
         pd3dDeviceContext->OMSetRenderTargets(1, &pMainRenderTargetView, nullptr);
         pd3dDeviceContext->ClearRenderTargetView(pMainRenderTargetView, clear_color_with_alpha);
 
-        imgui_ImplDX11_RenderDrawData(imgui::GetDrawData());
+        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-        if (ConfFlags & imguiConfigFlags_ViewportsEnable)
+        if (ConfFlags & ImGuiConfigFlags_ViewportsEnable)
         {
-            imgui::UpdatePlatformWindows();
-            imgui::RenderPlatformWindowsDefault();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
         }
 
         pSwapChain->Present(1, 0);
@@ -239,10 +239,10 @@ void ImGuiCrossPlatformWin32::Render(Application* app)
 
 void ImGuiCrossPlatformWin32::CleanUp()
 {
-    imgui_ImplDX11_Shutdown();
-    imgui_ImplWin32_Shutdown();
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
 
-    imgui::DestroyContext();
+    ImGui::DestroyContext();
 
     CleanupDeviceD3D();
     ::DestroyWindow(ImGuiCrossPlatformWin32::hwnd);

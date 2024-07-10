@@ -18,7 +18,7 @@
 #include <iostream>
 #include "../Application/Application.hpp"
 
-extern imgui_IMPL_API LRESULT imgui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 /// <summary>
 /// The imguiCrossPlatformWin32 contains the backend (dx11) and initialize the gui
@@ -38,7 +38,7 @@ private:
 
 public:
 	static ID3D11Device* pd3dDevice;
-	inline static imguiConfigFlags   ConfFlags;
+	inline static ImGuiConfigFlags   ConfFlags;
 	inline static HWND hwnd;
 	inline static WNDCLASSEX wc;
 	static HMODULE hCurrentModule;
@@ -46,7 +46,7 @@ public:
 	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	static void Render(Application* app);
-	static void Initimgui();
+	static void InitImGui();
 	static void CleanUp();
 	static bool ShouldQuit();
 	static void Run(Application* app);
