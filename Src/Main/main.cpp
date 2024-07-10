@@ -1,5 +1,5 @@
 
-#include "../ImGuiCrossPlatform/ImGuiCrossPlatform.hpp"
+#include "../imguiCrossPlatform/imguiCrossPlatform.hpp"
 #include "../DemoApplication/DemoApplication.hpp"
 
 #ifdef __linux__
@@ -7,7 +7,7 @@
 	{
 		Application* app = new DemoApplication();
 
-		ImGuiCrossPlatfrom::Run(app);
+		imguiCrossPlatfrom::Run(app);
 
 		delete app;
 	}
@@ -16,7 +16,7 @@
 	{
 		Application *app = new DemoApplication();
 
-		ImGuiCrossPlatfrom::Run(app);
+		imguiCrossPlatfrom::Run(app);
 
 		delete app;
 	}

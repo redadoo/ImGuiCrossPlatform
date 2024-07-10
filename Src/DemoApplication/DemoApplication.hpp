@@ -2,9 +2,9 @@
 #ifndef DEMOAPPLICATION_HPP
 #define DEMOAPPLICATION_HPP
 
-#include "../ImGui/imgui.h"
+#include "../../lib/imgui/imgui.h"
 #include "../Application/Application.hpp"
-#include "../ImGuiCrossPlatform/ImGuiCrossPlatform.hpp"
+#include "../imguiCrossPlatform/imguiCrossPlatform.hpp"
 
 class DemoApplication : public Application
 {

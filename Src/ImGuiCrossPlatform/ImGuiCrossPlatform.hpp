@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#ifndef IMGUICROSSPLATFORM_HPP
+#ifndef imguiCROSSPLATFORM_HPP
 
 #ifdef __linux__
-	#include "../ImGuiCrossPlatformImpl/ImGuiCrossPlatformLinux.hpp"
+	#include "../imguiCrossPlatformImpl/imguiCrossPlatformLinux.hpp"
 	using ImageTexture = GLuint;
 #elif _WIN32
-	#include "../ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.hpp"
+	#include "../imguiCrossPlatformImpl/imguiCrossPlatformWin32.hpp"
 	using ImageTexture = ID3D11ShaderResourceView*;
 #endif
 
@@ -14,11 +14,12 @@
 
 struct Image
 {
+	std::filesystem::path		filePath;
+	ImageTexture				texture;
+
 	int							myImageHeight;
 	int							myImageWidth;
-	std::filesystem::path		filePath;
 
-	ImageTexture				texture;
 
 	Image(const char* imagePath);
 	~Image();
@@ -27,7 +28,7 @@ struct Image
 	void Release();
 };
 
-class ImGuiCrossPlatfrom
+class imguiCrossPlatfrom
 {
 public:
 	static void Run(Application* app);
@@ -36,7 +37,7 @@ public:
 bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int* out_height);
 
 
-#endif // !IMGUICROSSPLATFORM_HPP
+#endif // !imguiCROSSPLATFORM_HPP
 
 
 

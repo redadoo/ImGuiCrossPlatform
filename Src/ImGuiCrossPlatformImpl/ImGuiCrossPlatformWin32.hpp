@@ -1,16 +1,16 @@
 ﻿#pragma comment(lib, "d3d11.lib")
 #pragma once
 
-#ifndef IMGUICROSSPLATFORMWIN32_HPP
-#define IMGUICROSSPLATFORMWIN32_HPP
+#ifndef imguiCROSSPLATFORMWIN32_HPP
+#define imguiCROSSPLATFORMWIN32_HPP
 
 #include <Winsock2.h>
 #include <Windows.h>
 #include <tchar.h>
 #include "d3d11.h"
-#include "../ImGui/imgui_impl_dx11.h"
-#include "../ImGui/imgui_impl_win32.h"
-#include "../ImGui/imgui.h"
+#include "../../lib/imgui/backends/imgui_impl_dx11.h"
+#include "../../lib/imgui/backends/imgui_impl_win32.h"
+#include "../../lib/imgui/imgui.h"
 #include <string>
 #include <iostream>
 #include <thread>
@@ -18,12 +18,12 @@
 #include <iostream>
 #include "../Application/Application.hpp"
 
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+extern imgui_IMPL_API LRESULT imgui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 /// <summary>
-/// The ImGuiCrossPlatformWin32 contains the backend (dx11) and initialize the gui
+/// The imguiCrossPlatformWin32 contains the backend (dx11) and initialize the gui
 /// </summary>
-class ImGuiCrossPlatformWin32
+class imguiCrossPlatformWin32
 {
 private:
 	static ID3D11DeviceContext* pd3dDeviceContext;
@@ -38,7 +38,7 @@ private:
 
 public:
 	static ID3D11Device* pd3dDevice;
-	inline static ImGuiConfigFlags   ConfFlags;
+	inline static imguiConfigFlags   ConfFlags;
 	inline static HWND hwnd;
 	inline static WNDCLASSEX wc;
 	static HMODULE hCurrentModule;
@@ -46,7 +46,7 @@ public:
 	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	static void Render(Application* app);
-	static void InitImGui();
+	static void Initimgui();
 	static void CleanUp();
 	static bool ShouldQuit();
 	static void Run(Application* app);

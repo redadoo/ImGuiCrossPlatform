@@ -1,15 +1,15 @@
 ﻿
-#include "ImGuiCrossPlatform.hpp"
+#include "imguiCrossPlatform.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "../ImGui/stb_image.h"
+#include "../../lib/stb_image/stb_image.h"
 
-void ImGuiCrossPlatfrom::Run(Application *app)
+void imguiCrossPlatfrom::Run(Application *app)
 {
 	#ifdef __linux__
-		ImGuiCrossPlatformLinux::Run(app);
+		imguiCrossPlatformLinux::Run(app);
 	#elif _WIN32
-		ImGuiCrossPlatformWin32::Run(app);
+		imguiCrossPlatformWin32::Run(app);
 	#endif 
 }
 
@@ -65,7 +65,7 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	subResource.pSysMem = image_data;
 	subResource.SysMemPitch = desc.Width * 4;
 	subResource.SysMemSlicePitch = 0;
-	ImGuiCrossPlatformWin32::pd3dDevice->CreateTexture2D(&desc, &subResource, &pTexture);
+	imguiCrossPlatformWin32::pd3dDevice->CreateTexture2D(&desc, &subResource, &pTexture);
 
 	// Create texture view
 	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc;
@@ -75,7 +75,7 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	srvDesc.Texture2D.MipLevels = desc.MipLevels;
 	srvDesc.Texture2D.MostDetailedMip = 0;	
 	ID3D11ShaderResourceView* tmp = NULL;
-	ImGuiCrossPlatformWin32::pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &tmp);
+	imguiCrossPlatformWin32::pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &tmp);
 	image.texture = tmp;
 	pTexture->Release();
 	*out_width = image_width;

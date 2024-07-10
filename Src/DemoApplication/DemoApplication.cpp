@@ -13,9 +13,9 @@ void CreateConsole()
 
 void DemoApplication::Main()
 {
-	ImGui::SetNextWindowSize({ 1280, 800 }, ImGuiCond_Once);
-	ImGui::Begin("Test");
-	ImGui::End();
+	imgui::SetNextWindowSize({ 1280, 800 }, imguiCond_Once);
+	imgui::Begin("Demo Application", &x);
+	imgui::End();
 }
 
 bool DemoApplication::IsClosed()
@@ -25,7 +25,10 @@ bool DemoApplication::IsClosed()
 
 DemoApplication::DemoApplication( void )
 {
-	CreateConsole();
+
+#if defined _DEBUG
+		CreateConsole();
+#endif
 
 	image = NULL;
 	this->x = false;
