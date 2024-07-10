@@ -1,15 +1,15 @@
 ﻿
-#include "imguiCrossPlatform.hpp"
+#include "ImGuiCrossPlatform.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "../../lib/stb_image/stb_image.h"
 
-void imguiCrossPlatfrom::Run(Application *app)
+void ImGuiCrossPlatfrom::Run(Application *app)
 {
 	#ifdef __linux__
-		imguiCrossPlatformLinux::Run(app);
+		ImGuiCrossPlatformLinux::Run(app);
 	#elif _WIN32
-		imguiCrossPlatformWin32::Run(app);
+		ImGuiCrossPlatformWin32::Run(app);
 	#endif 
 }
 

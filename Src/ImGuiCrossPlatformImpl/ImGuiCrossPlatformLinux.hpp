@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#ifndef imguiCROSSPLATFORMLINUX_HPP
-#define imguiCROSSPLATFORMLINUX_HPP
+#ifndef IMGUICROSSPLATFORMLINUX_HPP
+#define IMGUICROSSPLATFORMLINUX_HPP
 
 #include "../../lib/imgui/backends/imgui_impl_sdl2.h"
 #include "../../lib/imgui/backends/imgui_impl_opengl3.h"
@@ -17,7 +17,7 @@
 #include "../Application/Application.hpp"
 
 
-class imguiCrossPlatformLinux
+class ImGuiCrossPlatformLinux
 {
 public:
 	static void				Run(Application* app);
@@ -26,10 +26,10 @@ private:
 	static bool				done;
 	static SDL_Window*		window;
 	static SDL_WindowFlags 	windowFlags;
-	static imguiConfigFlags	ConfFlags;
+	static ImGuiConfigFlags	ConfFlags;
 	static SDL_GLContext	glContext;
 	static void Render(Application* app);
-	static void InitimguiCrossPlatformLinux();
+	static void InitImGuiCrossPlatformLinux();
 	static void CleanUp();
 	static bool ShouldQuit();
 

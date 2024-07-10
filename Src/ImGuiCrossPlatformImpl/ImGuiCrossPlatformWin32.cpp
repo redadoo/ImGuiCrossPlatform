@@ -1,13 +1,13 @@
-#include "imguiCrossPlatformWin32.hpp"
+#include "ImGuiCrossPlatformWin32.hpp"
 
-ID3D11Device* imguiCrossPlatformWin32::pd3dDevice = nullptr;
-ID3D11DeviceContext* imguiCrossPlatformWin32::pd3dDeviceContext = nullptr;
-IDXGISwapChain* imguiCrossPlatformWin32::pSwapChain = nullptr;
-ID3D11RenderTargetView* imguiCrossPlatformWin32::pMainRenderTargetView = nullptr;
+ID3D11Device* ImGuiCrossPlatformWin32::pd3dDevice = nullptr;
+ID3D11DeviceContext* ImGuiCrossPlatformWin32::pd3dDeviceContext = nullptr;
+IDXGISwapChain* ImGuiCrossPlatformWin32::pSwapChain = nullptr;
+ID3D11RenderTargetView* ImGuiCrossPlatformWin32::pMainRenderTargetView = nullptr;
 
-HMODULE imguiCrossPlatformWin32::hCurrentModule = nullptr;
+HMODULE ImGuiCrossPlatformWin32::hCurrentModule = nullptr;
 
-bool imguiCrossPlatformWin32::CreateDeviceD3D(HWND hWnd)
+bool ImGuiCrossPlatformWin32::CreateDeviceD3D(HWND hWnd)
 {
     DXGI_SWAP_CHAIN_DESC sd;
     ZeroMemory(&sd, sizeof(sd));
@@ -38,7 +38,7 @@ bool imguiCrossPlatformWin32::CreateDeviceD3D(HWND hWnd)
     return true;
 }
 
-void imguiCrossPlatformWin32::CreateRenderTarget()
+void ImGuiCrossPlatformWin32::CreateRenderTarget()
 {
     ID3D11Texture2D* pBackBuffer;
     pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
@@ -49,7 +49,7 @@ void imguiCrossPlatformWin32::CreateRenderTarget()
     }
 }
 
-void imguiCrossPlatformWin32::CleanupRenderTarget()
+void ImGuiCrossPlatformWin32::CleanupRenderTarget()
 {
     if (pMainRenderTargetView)
     {
@@ -58,7 +58,7 @@ void imguiCrossPlatformWin32::CleanupRenderTarget()
     }
 }
 
-void imguiCrossPlatformWin32::CleanupDeviceD3D()
+void ImGuiCrossPlatformWin32::CleanupDeviceD3D()
 {
     CleanupRenderTarget();
     if (pSwapChain)
@@ -84,7 +84,7 @@ void imguiCrossPlatformWin32::CleanupDeviceD3D()
 #define WM_DPICHANGED 0x02E0 // From Windows SDK 8.1+ headers
 #endif
 
-LRESULT WINAPI imguiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT WINAPI ImGuiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (imgui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
         return true;
@@ -123,12 +123,12 @@ LRESULT WINAPI imguiCrossPlatformWin32::WndProc(HWND hWnd, UINT msg, WPARAM wPar
     return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
-void imguiCrossPlatformWin32::Initimgui()
+void ImGuiCrossPlatformWin32::Initimgui()
 {
     imgui_ImplWin32_EnableDpiAwareness();
-    imguiCrossPlatformWin32::wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, _T("imgui Standalone"), nullptr };
-    ::RegisterClassEx(&imguiCrossPlatformWin32::wc);
-    imguiCrossPlatformWin32::hwnd = ::CreateWindow(imguiCrossPlatformWin32::wc.lpszClassName, _T("imgui Standalone"), WS_OVERLAPPEDWINDOW, 100, 100, 50, 50, NULL, NULL, imguiCrossPlatformWin32::wc.hInstance, NULL);
+    ImGuiCrossPlatformWin32::wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, _T("imgui Standalone"), nullptr };
+    ::RegisterClassEx(&ImGuiCrossPlatformWin32::wc);
+    ImGuiCrossPlatformWin32::hwnd = ::CreateWindow(ImGuiCrossPlatformWin32::wc.lpszClassName, _T("imgui Standalone"), WS_OVERLAPPEDWINDOW, 100, 100, 50, 50, NULL, NULL, ImGuiCrossPlatformWin32::wc.hInstance, NULL);
 
     if (!CreateDeviceD3D(hwnd))
     {
@@ -140,7 +140,7 @@ void imguiCrossPlatformWin32::Initimgui()
     ::ShowWindow(hwnd, SW_HIDE);
     ::UpdateWindow(hwnd);
 
-    const HMONITOR monitor = MonitorFromWindow(imguiCrossPlatformWin32::hwnd, MONITOR_DEFAULTTONEAREST);
+    const HMONITOR monitor = MonitorFromWindow(ImGuiCrossPlatformWin32::hwnd, MONITOR_DEFAULTTONEAREST);
     MONITORINFO info = {};
     info.cbSize = sizeof(MONITORINFO);
     GetMonitorInfo(monitor, &info);
@@ -177,7 +177,7 @@ void imguiCrossPlatformWin32::Initimgui()
     ConfFlags = io.ConfigFlags;
 }
 
-bool imguiCrossPlatformWin32::ShouldQuit()
+bool ImGuiCrossPlatformWin32::ShouldQuit()
 {
     MSG msg;
     while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
@@ -198,14 +198,14 @@ bool imguiCrossPlatformWin32::ShouldQuit()
     return false;
 }
 
-void imguiCrossPlatformWin32::Run(Application* app)
+void ImGuiCrossPlatformWin32::Run(Application* app)
 {
-    imguiCrossPlatformWin32::Initimgui();
-    imguiCrossPlatformWin32::Render(app);
-    imguiCrossPlatformWin32::CleanUp();
+    ImGuiCrossPlatformWin32::Initimgui();
+    ImGuiCrossPlatformWin32::Render(app);
+    ImGuiCrossPlatformWin32::CleanUp();
 }
 
-void imguiCrossPlatformWin32::Render(Application* app)
+void ImGuiCrossPlatformWin32::Render(Application* app)
 {
     while (!bDone)
     {
@@ -237,7 +237,7 @@ void imguiCrossPlatformWin32::Render(Application* app)
     //delete visualizer;
 }
 
-void imguiCrossPlatformWin32::CleanUp()
+void ImGuiCrossPlatformWin32::CleanUp()
 {
     imgui_ImplDX11_Shutdown();
     imgui_ImplWin32_Shutdown();
@@ -245,8 +245,8 @@ void imguiCrossPlatformWin32::CleanUp()
     imgui::DestroyContext();
 
     CleanupDeviceD3D();
-    ::DestroyWindow(imguiCrossPlatformWin32::hwnd);
-    ::UnregisterClass(imguiCrossPlatformWin32::wc.lpszClassName, imguiCrossPlatformWin32::wc.hInstance);
+    ::DestroyWindow(ImGuiCrossPlatformWin32::hwnd);
+    ::UnregisterClass(ImGuiCrossPlatformWin32::wc.lpszClassName, ImGuiCrossPlatformWin32::wc.hInstance);
 
 #ifdef _WINDLL
     CreateThread(nullptr, NULL, (LPTHREAD_START_ROUTINE)FreeLibrary, hCurrentModule, NULL, nullptr);

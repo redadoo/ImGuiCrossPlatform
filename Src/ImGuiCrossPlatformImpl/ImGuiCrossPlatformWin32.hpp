@@ -1,8 +1,8 @@
 ﻿#pragma comment(lib, "d3d11.lib")
 #pragma once
 
-#ifndef imguiCROSSPLATFORMWIN32_HPP
-#define imguiCROSSPLATFORMWIN32_HPP
+#ifndef IMGUICROSSPLATFORMWIN32_HPP
+#define IMGUICROSSPLATFORMWIN32_HPP
 
 #include <Winsock2.h>
 #include <Windows.h>
@@ -23,7 +23,7 @@ extern imgui_IMPL_API LRESULT imgui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 /// <summary>
 /// The imguiCrossPlatformWin32 contains the backend (dx11) and initialize the gui
 /// </summary>
-class imguiCrossPlatformWin32
+class ImGuiCrossPlatformWin32
 {
 private:
 	static ID3D11DeviceContext* pd3dDeviceContext;

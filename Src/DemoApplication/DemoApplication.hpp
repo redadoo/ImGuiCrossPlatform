@@ -1,25 +1,19 @@
-
-#ifndef DEMOAPPLICATION_HPP
-#define DEMOAPPLICATION_HPP
-
+#include "../ImGuiCrossPlatform/ImGuiCrossPlatform.hpp"
 #include "../../lib/imgui/imgui.h"
-#include "../Application/Application.hpp"
-#include "../imguiCrossPlatform/imguiCrossPlatform.hpp"
 
 class DemoApplication : public Application
 {
-	private:
-		bool	x;
+private:
+		bool	x = true;
 		Image	*image;
 
-	public:
+public:
 
-		DemoApplication(void);
-
-		void Main();
-		bool IsClosed();
-
+    DemoApplication();
+    ~DemoApplication();
+    
+    void Main();
+    bool IsOpen() const;
 };
 
 
-#endif // !DEMOAPPLICATION_HPP

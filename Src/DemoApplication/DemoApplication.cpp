@@ -1,35 +1,24 @@
 #include "DemoApplication.hpp"
 
-void CreateConsole()
+DemoApplication::DemoApplication()
 {
-	#ifdef _WIN32
-		FILE* fDummy;
-		AllocConsole();
-		freopen_s(&fDummy, "CONIN$", "r", stdin);
-		freopen_s(&fDummy, "CONOUT$", "w", stderr);
-		freopen_s(&fDummy, "CONOUT$", "w", stdout);
-	#endif
+    image = NULL;
+	this->x = true;
+}
+
+DemoApplication::~DemoApplication()
+{
 }
 
 void DemoApplication::Main()
 {
-	imgui::SetNextWindowSize({ 1280, 800 }, imguiCond_Once);
-	imgui::Begin("Demo Application", &x);
-	imgui::End();
+    ImGui::SetNextWindowSize({ 1280, 800 }, ImGuiCond_Once);
+	ImGui::Begin("Demo Application", &x, ImGuiWindowFlags_NoCollapse);
+	std::cout << "state : " << x << "\n";
+	ImGui::End();
 }
 
-bool DemoApplication::IsClosed()
+bool DemoApplication::IsOpen() const
 {
 	return this->x;
-}
-
-DemoApplication::DemoApplication( void )
-{
-
-#if defined _DEBUG
-		CreateConsole();
-#endif
-
-	image = NULL;
-	this->x = false;
 }

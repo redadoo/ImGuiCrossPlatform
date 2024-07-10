@@ -9,16 +9,16 @@
 /// </summary>
 class Application
 {
-public:
-	/// <summary>
-	/// main page of the application
-	/// </summary>
-	virtual void Main() = 0;
+	public:
+		/// <summary>
+		/// main page of the application
+		/// </summary>
+		virtual void Main() = 0;
 
-	/// <summary>
-	/// Gets the status indicating whether the main page need to be closed.
-	/// </summary>
-	virtual bool IsClosed() const = 0;
+		/// <summary>
+		/// Gets the status indicating whether the main page need to be closed.
+		/// </summary>
+		virtual bool IsOpen() const = 0;
 };
 
 #endif 
