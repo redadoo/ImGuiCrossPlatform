@@ -13,7 +13,7 @@ void ImGuiCrossPlatfrom::Run(Application *app)
 	#endif 
 }
 
-bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int* out_height)
+bool LoadTextureFromFile(const char* filename, Image& image)
 {
 	// Load from disk into a raw RGBA buffer
 	int image_width = 0;
@@ -45,8 +45,8 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	stbi_image_free(image_data);
 
 	image.texture = image_texture; 
-	*out_width = image_width;
-	*out_height = image_height;
+	image.myImageWidth = image_width;
+	image.myImageHeight = image_height;
 #elif _WIN32
 	D3D11_TEXTURE2D_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
@@ -78,8 +78,8 @@ bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int
 	ImGuiCrossPlatformWin32::pd3dDevice->CreateShaderResourceView(pTexture, &srvDesc, &tmp);
 	image.texture = tmp;
 	pTexture->Release();
-	*out_width = image_width;
-	*out_height = image_height;
+	image.myImageWidth = image_width;
+	image.myImageHeight = image_height;
 	stbi_image_free(image_data);
 #endif
 
