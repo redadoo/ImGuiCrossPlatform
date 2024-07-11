@@ -34,7 +34,7 @@ public:
 	static void Run(Application* app);
 };
 
-bool LoadTextureFromFile(const char* filename, Image& image, int* out_width, int* out_height);
+bool LoadTextureFromFile(const char* filename, Image& image);
 
 
 #endif // !IMGUICROSSPLATFORM_HPP
