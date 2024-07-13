@@ -2,7 +2,7 @@
 #include "ImGuiCrossPlatform.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "../../lib/stb_image/stb_image.h"
+#include "stb_image.h"
 
 void ImGuiCrossPlatfrom::Run(Application *app)
 {
@@ -95,7 +95,14 @@ Image::Image(const char* _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	filePath = filePath;
+	filePath = (char*)_filePath;
+}
+
+Image::Image(const std::string& _filePath)
+{
+	this->myImageHeight = 0;
+	this->myImageWidth = 0;
+	filePath = (char*)_filePath.c_str();
 }
 
 ImTextureID Image::GetTexture() const

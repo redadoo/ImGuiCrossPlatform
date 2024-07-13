@@ -2,26 +2,28 @@
 
 #ifndef IMGUICROSSPLATFORM_HPP
 
+
 #ifdef __linux__
-	#include "../ImGuiCrossPlatformImpl/ImGuiCrossPlatformLinux.hpp"
+	#include "ImGuiCrossPlatformLinux.hpp"
 	using ImageTexture = GLuint;
 #elif _WIN32
-	#include "../ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.hpp"
+	#include "ImGuiCrossPlatformWin32.hpp"
 	using ImageTexture = ID3D11ShaderResourceView*;
 #endif
 
-#include <filesystem>
 
 struct Image
 {
-	std::filesystem::path		filePath;
-	ImageTexture				texture;
+	char*			filePath;
+	ImageTexture	texture;
 
-	int							myImageHeight;
-	int							myImageWidth;
+	int				myImageHeight;
+	int				myImageWidth;
 
 
 	Image(const char* imagePath);
+	Image(const std::string &imagePath);
+
 	~Image();
 
 	ImTextureID GetTexture() const;

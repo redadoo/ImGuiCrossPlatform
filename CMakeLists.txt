@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.22.1)
 project(imguiCrossPlatform LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
+
 # General compile options
 add_compile_options(-Wall)
 
@@ -11,7 +12,8 @@ endif()
 
 # Paths
 set(IMGUI_PATH "lib/imgui")
-set(STB_IMAGE_PATH "lib/stb_image/stb_image.h")
+set(IMGUI_CROSS_PLATFORM_PATH "Src/ImGuiCrossPlatformImpl")
+set(STB_IMAGE_PATH "lib/stb_image")
 
 # ImGui sources
 set(IMGUI_SOURCES
@@ -36,8 +38,8 @@ elseif (WIN32)
 endif()
 
 # Add ImGui library
-add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES} ${STB_IMAGE_PATH})
-target_include_directories(imgui PUBLIC ${IMGUI_PATH})
+add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES})
+target_include_directories(imgui PUBLIC ${IMGUI_PATH} ${STB_IMAGE_PATH} ${IMGUI_CROSS_PLATFORM_PATH})
 
 # Executable and platform-specific settings
 if (UNIX)
@@ -53,7 +55,6 @@ if (UNIX)
         Src/DemoApplication/DemoApplication.cpp
     )
     target_link_libraries(ImGuiCrossPlatform PUBLIC imgui ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES})
-
 elseif (WIN32)
     add_executable(imguiCrossPlatform WIN32 
         Src/Main/main.cpp 
@@ -61,5 +62,8 @@ elseif (WIN32)
         Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp
         Src/DemoApplication/DemoApplication.cpp
     )
+
     target_link_libraries(imguiCrossPlatform PUBLIC imgui)
 endif()
+
+target_compile_features(imguiCrossPlatform PUBLIC cxx_std_17)
