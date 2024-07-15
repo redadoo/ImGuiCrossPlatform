@@ -4,7 +4,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-void ImGuiCrossPlatfrom::Run(Application *app)
+void ImGuiCrossPlatfrom::Run(std::unique_ptr<Application>& app)
 {
 	#ifdef __linux__
 		ImGuiCrossPlatformLinux::Run(app);

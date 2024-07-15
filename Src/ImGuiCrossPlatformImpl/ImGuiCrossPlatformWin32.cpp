@@ -198,14 +198,14 @@ bool ImGuiCrossPlatformWin32::ShouldQuit()
     return false;
 }
 
-void ImGuiCrossPlatformWin32::Run(Application* app)
+void ImGuiCrossPlatformWin32::Run(std::unique_ptr<Application>& app)
 {
     ImGuiCrossPlatformWin32::InitImGui();
     ImGuiCrossPlatformWin32::Render(app);
     ImGuiCrossPlatformWin32::CleanUp();
 }
 
-void ImGuiCrossPlatformWin32::Render(Application* app)
+void ImGuiCrossPlatformWin32::Render(std::unique_ptr<Application>& app)
 {
     while (!bDone)
     {

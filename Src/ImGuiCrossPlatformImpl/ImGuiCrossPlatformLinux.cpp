@@ -98,7 +98,7 @@ bool ImGuiCrossPlatformLinux::ShouldQuit()
 	return false;
 }
 
-void ImGuiCrossPlatformLinux::Render(Application* app)
+void ImGuiCrossPlatformLinux::Render(std::unique_ptr<Application>& app)
 {
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
@@ -145,7 +145,7 @@ void ImGuiCrossPlatformLinux::CleanUp()
 	SDL_Quit();
 }
 
-void ImGuiCrossPlatformLinux::Run(Application* app)
+void ImGuiCrossPlatformLinux::Run(std::unique_ptr<Application>& app)
 {
 	InitImGuiCrossPlatformLinux();
 	Render(app);

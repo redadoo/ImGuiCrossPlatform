@@ -45,11 +45,11 @@ public:
 	inline static bool bDone = false;
 	inline static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-	static void Render(Application* app);
+	static void Render(std::unique_ptr<Application>& app);
 	static void InitImGui();
 	static void CleanUp();
 	static bool ShouldQuit();
-	static void Run(Application* app);
+	static void Run(std::unique_ptr<Application>& app);
 };
 
 #endif

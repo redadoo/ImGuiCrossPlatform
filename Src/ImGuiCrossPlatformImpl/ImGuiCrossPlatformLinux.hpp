@@ -20,7 +20,7 @@
 class ImGuiCrossPlatformLinux
 {
 public:
-	static void				Run(Application* app);
+	static void				Run(std::unique_ptr<Application>& app);
 
 private:
 	static bool				done;
@@ -28,7 +28,7 @@ private:
 	static SDL_WindowFlags 	windowFlags;
 	static ImGuiConfigFlags	ConfFlags;
 	static SDL_GLContext	glContext;
-	static void Render(Application* app);
+	static void Render(std::unique_ptr<Application>& app);
 	static void InitImGuiCrossPlatformLinux();
 	static void CleanUp();
 	static bool ShouldQuit();

@@ -33,7 +33,7 @@ struct Image
 class ImGuiCrossPlatfrom
 {
 public:
-	static void Run(Application* app);
+	static void Run(std::unique_ptr<Application>& app);
 };
 
 bool LoadTextureFromFile(const char* filename, Image& image);
