@@ -15,6 +15,8 @@ set(IMGUI_PATH "lib/imgui")
 set(IMGUI_CROSS_PLATFORM_PATH "Src/ImGuiCrossPlatformImpl")
 set(STB_IMAGE_PATH "lib/stb_image")
 
+set(IMGUI_BACKEND_PATH "lib/imgui/backends")
+set(APPLICATION_PATH "Src/Application")
 # ImGui sources
 set(IMGUI_SOURCES
     ${IMGUI_PATH}/imgui.cpp
@@ -40,6 +42,8 @@ endif()
 # Add ImGui library
 add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES})
 target_include_directories(imgui PUBLIC ${IMGUI_PATH} ${STB_IMAGE_PATH} ${IMGUI_CROSS_PLATFORM_PATH})
+
+include_directories(${IMGUI_BACKEND_PATH} ${APPLICATION_PATH})
 
 # Executable and platform-specific settings
 if (UNIX)

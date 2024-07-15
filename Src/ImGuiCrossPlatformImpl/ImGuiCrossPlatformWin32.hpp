@@ -8,15 +8,15 @@
 #include <Windows.h>
 #include <tchar.h>
 #include "d3d11.h"
-#include "../../lib/imgui/backends/imgui_impl_dx11.h"
-#include "../../lib/imgui/backends/imgui_impl_win32.h"
-#include "../../lib/imgui/imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
+#include "imgui.h"
 #include <string>
 #include <iostream>
 #include <thread>
 #include <mutex>
 #include <iostream>
-#include "../Application/Application.hpp"
+#include "Application.hpp"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
