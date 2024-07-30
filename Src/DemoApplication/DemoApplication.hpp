@@ -1,11 +1,14 @@
-#include "../ImGuiCrossPlatform/ImGuiCrossPlatform.hpp"
-#include "../../lib/imgui/imgui.h"
+#include <filesystem>
+#include "ImGuiCrossPlatform.hpp"
+#include "Image.hpp"
 
 class DemoApplication : public Application
 {
 private:
 		bool	x = true;
-		Image	*image;
+		std::unique_ptr<Image>	image;
+
+        void InitImage();
 
 public:
 

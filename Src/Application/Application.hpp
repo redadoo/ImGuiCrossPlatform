@@ -19,6 +19,8 @@ class Application
 		/// Gets the status indicating whether the main page need to be closed.
 		/// </summary>
 		virtual bool IsOpen() const = 0;
+
+		virtual ~Application() = default;
 };
 
 #endif 

@@ -12,11 +12,14 @@ endif()
 
 # Paths
 set(IMGUI_PATH "lib/imgui")
-set(IMGUI_CROSS_PLATFORM_PATH "Src/ImGuiCrossPlatformImpl")
+set(IMGUI_BACKEND_PATH "lib/imgui/backends")
 set(STB_IMAGE_PATH "lib/stb_image")
 
-set(IMGUI_BACKEND_PATH "lib/imgui/backends")
+set(IMGUI_CROSS_PLATFORM_IMPL_PATH "Src/ImGuiCrossPlatformImpl")
+set(IMGUI_CROSS_PLATFORM_PATH "Src/ImGuiCrossPlatform/")
 set(APPLICATION_PATH "Src/Application")
+set(IMAGE_PATH "Src/Image")
+
 # ImGui sources
 set(IMGUI_SOURCES
     ${IMGUI_PATH}/imgui.cpp
@@ -40,10 +43,10 @@ elseif (WIN32)
 endif()
 
 # Add ImGui library
-add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES})
+add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_BACKEND_SOURCES} "Src/Image/Image.cpp")
 target_include_directories(imgui PUBLIC ${IMGUI_PATH} ${STB_IMAGE_PATH} ${IMGUI_CROSS_PLATFORM_PATH})
 
-include_directories(${IMGUI_BACKEND_PATH} ${APPLICATION_PATH})
+include_directories(${IMGUI_BACKEND_PATH} ${APPLICATION_PATH} ${IMGUI_CROSS_PLATFORM_PATH} ${IMGUI_CROSS_PLATFORM_IMPL_PATH} ${IMAGE_PATH})
 
 # Executable and platform-specific settings
 if (UNIX)
@@ -65,7 +68,7 @@ elseif (WIN32)
         Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp 
         Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp
         Src/DemoApplication/DemoApplication.cpp
-    )
+     "Src/Image/Image.cpp")
 
     target_link_libraries(imguiCrossPlatform PUBLIC imgui)
 endif()
