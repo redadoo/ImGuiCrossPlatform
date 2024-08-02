@@ -5,11 +5,18 @@
       "generator": "Ninja",
       "configurationType": "Debug",
       "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "buildRoot": "${projectDir}\\build",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "CMAKE_INSTALL_PREFIX",
+          "value": "C:/Users/edoar/Desktop/GitHub/ImGuiCrossPlatform/build",
+          "type": "PATH"
+        }
+      ]
     }
   ]
 }
