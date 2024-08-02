@@ -3,7 +3,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#pragma region  Image implementation
+#pragma region Image implementation
 
 Image::~Image()
 {
@@ -14,15 +14,15 @@ Image::Image()
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = nullptr;
-	filePath = nullptr;
+	this->texture = NULL;
+	filePath = NULL;
 }
 
 Image::Image(const char* _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = nullptr;
+	this->texture = NULL;
 	filePath = (char*)_filePath;
 }
 
@@ -30,7 +30,7 @@ Image::Image(const std::string& _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = nullptr;
+	this->texture = NULL;
 	filePath = (char*)_filePath.c_str();
 }
 
@@ -45,7 +45,7 @@ ImTextureID Image::GetTexture() const
 
 void Image::Release()
 {
-	if (this->texture != nullptr)
+	if (this->texture != NULL)
 	{
 #ifdef __linux__
 			glDeleteTextures(1, &texture);
@@ -54,7 +54,6 @@ void Image::Release()
 #endif 
 	}
 }
-
 
 #pragma endregion
 
@@ -164,9 +163,9 @@ bool LoadTextureFromFile(const char* filename, std::unique_ptr<Image>& image)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
 	stbi_image_free(image_data);
 
-	image.texture = image_texture;
-	image.myImageWidth = image_width;
-	image.myImageHeight = image_height;
+	image->texture = image_texture;
+	image->myImageWidth = image_width;
+	image->myImageHeight = image_height;
 #elif _WIN32
 	D3D11_TEXTURE2D_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
@@ -205,6 +204,5 @@ bool LoadTextureFromFile(const char* filename, std::unique_ptr<Image>& image)
 
 	return true;
 }
-
 
 #pragma endregion

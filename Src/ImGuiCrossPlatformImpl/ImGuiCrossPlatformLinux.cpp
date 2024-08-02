@@ -107,7 +107,6 @@ void ImGuiCrossPlatformLinux::Render(std::unique_ptr<Application>& app)
 	{
 		if (ShouldQuit() == true || app->IsOpen() == false) 
 		{
-			std::cout << "fine\n";
 			break;
 		}
 		

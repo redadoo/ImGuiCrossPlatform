@@ -15,7 +15,7 @@
 #endif
 #include <iostream>
 #include "Application.hpp"
-
+#include <memory>
 
 class ImGuiCrossPlatformLinux
 {

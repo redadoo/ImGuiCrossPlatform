@@ -35,16 +35,10 @@ bool DemoApplication::IsOpen() const
 
 void DemoApplication::InitImage()
 {
-	std::string imagePath = std::filesystem::current_path()
-		.parent_path()
-		.parent_path()
-		.parent_path()
-		.string();
-
-	imagePath.append("\\ImageFolder\\cute-cat-relaxing-studio.jpg");
+	std::string imagePath = std::filesystem::current_path().parent_path().string();
+	imagePath += "/ImageFolder/cute-cat-relaxing-studio.jpg";
 	
 	image = std::make_unique<Image>(imagePath);
-	
 	LoadTextureFromFile(image->filePath, image);
 }
 
