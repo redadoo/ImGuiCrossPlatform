@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project(imGuiCrossPlatform LANGUAGES CXX)
+project(ImGuiCrossPlatform LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -64,14 +64,14 @@ if (UNIX)
     )
     target_link_libraries(ImGuiCrossPlatform PUBLIC imgui ${OPENGL_LIBRARIES} ${SDL2_LIBRARIES})
 elseif (WIN32)
-    add_executable(imguiCrossPlatform WIN32 
+    add_executable(ImGuiCrossPlatform WIN32 
         Src/Main/main.cpp 
         Src/ImGuiCrossPlatform/ImGuiCrossPlatform.cpp 
         Src/ImGuiCrossPlatformImpl/ImGuiCrossPlatformWin32.cpp
         Src/DemoApplication/DemoApplication.cpp
         Src/Image/Image.cpp)
 
-    target_link_libraries(imguiCrossPlatform PUBLIC imgui)
+    target_link_libraries(ImGuiCrossPlatform PUBLIC imgui)
 endif()
 
 target_compile_features(ImGuiCrossPlatform PUBLIC cxx_std_17)
