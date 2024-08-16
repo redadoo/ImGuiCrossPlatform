@@ -6,7 +6,7 @@
 class DemoApplication : public Application
 {
 private:
-		bool	x = true;
+		bool	                demoApplicationExitStatus;
 		std::unique_ptr<Image>	image;
 
         void InitImage();

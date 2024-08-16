@@ -5,7 +5,7 @@
 DemoApplication::DemoApplication()
 {
 	image == nullptr;
-	this->x = true;
+	this->demoApplicationExitStatus = true;
 }
 
 DemoApplication::~DemoApplication() {}
@@ -17,16 +17,18 @@ DemoApplication::~DemoApplication() {}
 void DemoApplication::Main()
 {
 	ImGui::SetNextWindowSize({ 1280, 800 }, ImGuiCond_Once);
-	ImGui::Begin("Demo Application", &x, ImGuiWindowFlags_NoCollapse);
+	ImGui::Begin("Demo Application", &demoApplicationExitStatus, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse);
+	
 	if (image == nullptr)
 		InitImage();
 	ImGui::ImageButton("##image", image->GetTexture(), { 400, 400 });
+
 	ImGui::End();
 }
 
 bool DemoApplication::IsOpen() const
 {
-	return this->x;
+	return this->demoApplicationExitStatus;
 }
 
 #pragma endregion
