@@ -7,9 +7,11 @@
 #ifdef __linux__
 	#include "ImGuiCrossPlatformLinux.hpp"	
 	using ImageTexture = GLuint;
+	#define NULL_ 0
 #elif _WIN32
 	#include "ImGuiCrossPlatformWin32.hpp"
 	using ImageTexture = ID3D11ShaderResourceView*;
+	#define NULL_ NULL
 #endif
 
 struct Image

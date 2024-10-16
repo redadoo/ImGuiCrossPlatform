@@ -1,7 +1,7 @@
 ﻿#include "ImGuiCrossPlatformLinux.hpp"
 
 SDL_WindowFlags ImGuiCrossPlatformLinux::windowFlags;
-SDL_Window* ImGuiCrossPlatformLinux::window;
+SDL_Window* 	ImGuiCrossPlatformLinux::window;
 SDL_GLContext	ImGuiCrossPlatformLinux::glContext;
 bool			ImGuiCrossPlatformLinux::done;
 

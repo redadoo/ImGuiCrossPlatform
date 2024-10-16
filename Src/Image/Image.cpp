@@ -14,7 +14,7 @@ Image::Image()
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = NULL;
+	this->texture = NULL_;
 	filePath = NULL;
 }
 
@@ -22,7 +22,7 @@ Image::Image(const char* _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = NULL;
+	this->texture = NULL_;
 	filePath = (char*)_filePath;
 }
 
@@ -30,7 +30,7 @@ Image::Image(const std::string& _filePath)
 {
 	this->myImageHeight = 0;
 	this->myImageWidth = 0;
-	this->texture = NULL;
+	this->texture = NULL_;
 	filePath = (char*)_filePath.c_str();
 }
 
@@ -45,13 +45,13 @@ ImTextureID Image::GetTexture() const
 
 void Image::Release()
 {
-	if (this->texture != NULL)
+	if (this->texture != NULL_)
 	{
 #ifdef __linux__
 			glDeleteTextures(1, &texture);
 #elif _WIN32
 			this->texture->Release();
-#endif 
+#endif
 	}
 }
 
