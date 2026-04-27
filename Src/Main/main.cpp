@@ -1,41 +1,25 @@
+#include "Platform.h"
+#include "UiManager.h"
 
-#include "../DemoApplication/DemoApplication.hpp"
-#include <memory>
+PLATFORM_MAIN
+{
+	UI::UIManager manager;
+	manager.SetBackendFlags(UI::BackendFlags::FloatingPanels | UI::BackendFlags::InstantQuitWithEsc);
+	manager.Initialize(1920, 1080, "Template ui", 120);
 
-#ifdef __linux__
-	int main()
+	while (!manager.ShouldQuit())
 	{
-		std::unique_ptr<Application> app(new DemoApplication);
+		manager.StartDrawScene();
 
-		ImGuiCrossPlatfrom::Run(app);
-	}
-#elif _WIN32
+		static bool p_open = true;
+		ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
+		ImGui::Begin("Dear ImGui Demo", &p_open);
+		ImGui::End();
 
-	/// <summary>
-	///  attach a console to the programm (for debug purpose)
-	/// </summary>
-	void CreateConsole()
-	{
-		FILE* fDummy;
-		AllocConsole();
-		freopen_s(&fDummy, "CONIN$", "r", stdin);
-		freopen_s(&fDummy, "CONOUT$", "w", stderr);
-		freopen_s(&fDummy, "CONOUT$", "w", stdout);
+		manager.EndDrawScene();
+
+		if (!p_open) break;
 	}
 
-
-
-	int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
-	{
-
-#if defined _DEBUG
-		CreateConsole();
-		std::cout << "debug build\n";
-#endif
-
-		std::unique_ptr<Application> app(new DemoApplication);
-
-		ImGuiCrossPlatfrom::Run(app);
-	}
-#endif 
-
+	return 0;
+}
