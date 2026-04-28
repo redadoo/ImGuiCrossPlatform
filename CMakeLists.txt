@@ -3,6 +3,7 @@ project(ImGuiCrossPlatform LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 if(POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
@@ -82,7 +83,12 @@ else()
     if(UNIX)
         find_package(OpenGL REQUIRED)
         find_package(SDL2 REQUIRED)
-        target_link_libraries(${PROJECT_NAME} PRIVATE OpenGL::GL ${SDL2_LIBRARIES})
+
+        # Link SDL2 + OpenGL to imgui (THIS is the important fix)
+        target_link_libraries(imgui PRIVATE SDL2::SDL2 OpenGL::GL)
+
+        # Your executable can still link imgui
+        target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
     endif()
 endif()
 

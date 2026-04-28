@@ -13,18 +13,18 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 struct Win32Context
 {
-    ID3D11Device*            device           = nullptr;
-    ID3D11DeviceContext*     deviceContext    = nullptr;
-    IDXGISwapChain*          swapChain        = nullptr;
-    ID3D11RenderTargetView*  renderTargetView = nullptr;
-    HWND                     hwnd             = nullptr;
-    WNDCLASSEX               wc               = {};
-    HMODULE                  hModule          = nullptr;
-    ImGuiConfigFlags         configFlags      = 0;
-    ImVec4                   clearColor       = { 0.45f, 0.55f, 0.60f, 1.00f };
-    bool                     done             = false;
-    bool                     floatingMode     = false;
-    UI::BackendFlags         backendFlags     = UI::BackendFlags::None;
+    ID3D11Device* device = nullptr;
+    ID3D11DeviceContext* deviceContext = nullptr;
+    IDXGISwapChain* swapChain = nullptr;
+    ID3D11RenderTargetView* renderTargetView = nullptr;
+    HWND hwnd = nullptr;
+    WNDCLASSEX wc = {};
+    HMODULE hModule = nullptr;
+    ImGuiConfigFlags configFlags      = 0;
+    ImVec4 clearColor = { 0.45f, 0.55f, 0.60f, 1.00f };
+    bool done = false;
+    bool floatingMode = false;
+    UI::BackendFlags backendFlags = UI::BackendFlags::None;
 };
 
 struct ImGuiCrossPlatformWin32
@@ -35,6 +35,8 @@ struct ImGuiCrossPlatformWin32
     {
         ctx.backendFlags = flags;
     }
+
+    inline void RequestQuit() { ctx.done = true; }
 
     inline bool Init(const char* windowTitle, int width, int height, int fps)
     {
