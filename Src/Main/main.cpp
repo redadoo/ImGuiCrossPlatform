@@ -1,5 +1,5 @@
-#include "../../Include/graphic_backend/Platform.h"
-#include "../../Include/UI/UiManager.h"
+#include "graphic_backend/Platform.h"
+#include "UI/UiManager.h"
 #include "imgui_internal.h"
 
 PLATFORM_MAIN
@@ -11,7 +11,6 @@ PLATFORM_MAIN
 	manager.AddAttachedPanel(
 		{
 			{ "Main Panel", [&]() { ImGui::Text("ciao");} },
-			{ "Log Banner", [&]() { ImGui::Text("log");} },
 			{ "test", [&]() { ImGui::Text("test");} },
 		},
 
@@ -21,15 +20,13 @@ PLATFORM_MAIN
 			ImGuiID left, right;
 			ImGui::DockBuilderSplitNode(root, ImGuiDir_Right, 0.20f, &right, &left);
 
-			// Split left further into top and bottom
-			ImGuiID top, bottom;
-			ImGui::DockBuilderSplitNode(left, ImGuiDir_Down, 0.30f, &bottom, &top);
-
-			ImGui::DockBuilderDockWindow("Main Panel", top);
-			ImGui::DockBuilderDockWindow("Log Banner", bottom);
+			ImGui::DockBuilderDockWindow("Main Panel", left);
 			ImGui::DockBuilderDockWindow("test", right);
 		}
 	);
+
+	manager.SetMinWindowSize(800, 600);
+	manager.MaximizeWindow();
 
 	while (!manager.ShouldQuit())
 	{

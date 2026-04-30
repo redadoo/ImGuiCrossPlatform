@@ -1,4 +1,4 @@
-#include "../../Include/UI/UiManager.h"
+#include "UI/UiManager.h"
 
 #include <iostream>
 #include <ostream>
@@ -28,40 +28,69 @@ void UIManager::AddAttachedPanel(std::initializer_list<Panel> panels, std::funct
 	m_layoutInitialized = false;
 }
 
+void UIManager::SetMinWindowSize(int width, int height)
+{
+	Visit([&](auto& b) {
+		b.SetMinWindowSize(width, height);
+	});
+}
+
+void UIManager::SetMaxWindowSize(int width, int height)
+{
+	Visit([&](auto& b) {
+		b.SetMaxWindowSize(width, height);
+	});
+}
+void UIManager::MaximizeWindow()
+{
+	Visit([&](auto& b) {
+		b.MaximizeWindow();
+	});
+}
+
+void UIManager::MinimizeWindow()
+{
+	Visit([&](auto& b) {
+		b.MinimizeWindow();
+	});
+}
+
 void UIManager::DrawDockspace()
 {
 	const ImGuiViewport* vp = ImGui::GetMainViewport();
+
 	ImGui::SetNextWindowPos(vp->WorkPos);
 	ImGui::SetNextWindowSize(vp->WorkSize);
 	ImGui::SetNextWindowViewport(vp->ID);
 
 	constexpr ImGuiWindowFlags hostFlags =
-		ImGuiWindowFlags_NoDecoration      |
-		ImGuiWindowFlags_NoMove            |
+		ImGuiWindowFlags_NoDecoration          |
+		ImGuiWindowFlags_NoMove                |
 		ImGuiWindowFlags_NoBringToFrontOnFocus |
-		ImGuiWindowFlags_NoNavFocus;
+		ImGuiWindowFlags_NoNavFocus            |
+		ImGuiWindowFlags_NoBackground;
 
-	if (ImGui::Begin("##DockHost", nullptr, hostFlags))
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+	ImGui::Begin("##DockHost", nullptr, hostFlags);
+	ImGui::PopStyleVar(2);
+
+	const ImGuiID dsId = ImGui::GetID("##MainDS");
+
+	ImGui::DockSpace(dsId, ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
+
+	if (!m_layoutInitialized && m_layoutFn)
 	{
-		const ImGuiID dsId = ImGui::GetID("##MainDS");
-
-		if (!m_layoutInitialized && m_layoutFn)
-		{
-			ImGui::DockBuilderRemoveNode(dsId);
-			ImGui::DockBuilderAddNode(dsId, ImGuiDockNodeFlags_DockSpace);
-			ImGui::DockBuilderSetNodeSize(dsId, vp->WorkSize);
-
-			m_layoutFn(dsId);   // user defines splits + DockBuilderDockWindow here
-
-			ImGui::DockBuilderFinish(dsId);
-			m_layoutInitialized = true;
-		}
-
-		ImGui::DockSpace(dsId, ImVec2(0, 0), ImGuiDockNodeFlags_PassthruCentralNode);
+		ImGui::DockBuilderRemoveNode(dsId);
+		ImGui::DockBuilderAddNode(dsId, ImGuiDockNodeFlags_DockSpace);
+		ImGui::DockBuilderSetNodeSize(dsId, vp->WorkSize);
+		m_layoutFn(dsId);
+		ImGui::DockBuilderFinish(dsId);
+		m_layoutInitialized = true;
 	}
+
 	ImGui::End();
 
-	// Each panel: Begin → user draw → End
 	for (const auto& panel : m_panels)
 	{
 		if (ImGui::Begin(panel.name.c_str(), nullptr, panel.flags))

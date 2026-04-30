@@ -45,6 +45,11 @@ namespace UI
 
 		void AddAttachedPanel(std::initializer_list<Panel> panels, std::function<void(ImGuiID)> layoutFn);
 
+		void SetMinWindowSize(int width, int height);
+		void SetMaxWindowSize(int width, int height);
+		void MaximizeWindow();
+		void MinimizeWindow();
+
         void SetBackendFlags(BackendFlags flags);
 		void StartDrawScene();
 		void EndDrawScene();

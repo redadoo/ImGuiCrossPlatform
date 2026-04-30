@@ -22,6 +22,10 @@ struct Win32Context
     HMODULE hModule = nullptr;
     ImGuiConfigFlags configFlags      = 0;
     ImVec4 clearColor = { 0.45f, 0.55f, 0.60f, 1.00f };
+    int minWidth  = 0;
+    int minHeight = 0;
+    int maxWidth  = 0;
+    int maxHeight = 0;
     bool done = false;
     bool floatingMode = false;
     UI::BackendFlags backendFlags = UI::BackendFlags::None;
@@ -35,6 +39,21 @@ struct ImGuiCrossPlatformWin32
     {
         ctx.backendFlags = flags;
     }
+
+    inline void SetMinWindowSize(const int h, const int w)
+    {
+        ctx.minWidth  = w;
+        ctx.minHeight = h;
+    }
+
+    inline void SetMaxWindowSize(const int h, const int w)
+    {
+        ctx.maxWidth  = w;
+        ctx.maxHeight = h;
+    }
+
+    inline void MaximizeWindow() { ::ShowWindow(ctx.hwnd, SW_MAXIMIZE); }
+    inline void MinimizeWindow() { ::ShowWindow(ctx.hwnd, SW_MINIMIZE); }
 
     inline void RequestQuit() { ctx.done = true; }
 
@@ -222,25 +241,54 @@ private:
 
         switch (msg)
         {
-        case WM_SIZE:
-            if (self && self->ctx.device && wParam != SIZE_MINIMIZED)
+            case WM_GETMINMAXINFO:
             {
-                self->CleanupRenderTarget();
-                self->ctx.swapChain->ResizeBuffers(0, LOWORD(lParam), HIWORD(lParam), DXGI_FORMAT_UNKNOWN, 0);
-                self->CreateRenderTarget();
+                if (self)
+                {
+                    MINMAXINFO* mmi = reinterpret_cast<MINMAXINFO*>(lParam);
+
+                    // --- MIN SIZE ---
+                    if (self->ctx.minWidth > 0 && self->ctx.minHeight > 0)
+                    {
+                        RECT rc = { 0, 0, self->ctx.minWidth, self->ctx.minHeight };
+                        AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
+                        mmi->ptMinTrackSize.x = rc.right - rc.left;
+                        mmi->ptMinTrackSize.y = rc.bottom - rc.top;
+                    }
+
+                    // --- MAX SIZE ---
+                    if (self->ctx.maxWidth > 0 && self->ctx.maxHeight > 0)
+                    {
+                        RECT rc = { 0, 0, self->ctx.maxWidth, self->ctx.maxHeight };
+                        AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
+                        mmi->ptMaxTrackSize.x = rc.right - rc.left;
+                        mmi->ptMaxTrackSize.y = rc.bottom - rc.top;
+                    }
+                }
+                return 0;
             }
-            return 0;
-        case WM_SYSCOMMAND:
-            if ((wParam & 0xfff0) == SC_KEYMENU) return 0;
-            break;
-        case WM_KEYDOWN:
-            if (wParam == VK_ESCAPE) { ::PostQuitMessage(0); return 0; }
-            break;
-        case WM_DESTROY:
-            ::PostQuitMessage(0);
-            return 0;
-        default:
-            break;
+
+            case WM_SIZE:
+                if (self && self->ctx.device && wParam != SIZE_MINIMIZED)
+                {
+                    self->CleanupRenderTarget();
+                    self->ctx.swapChain->ResizeBuffers(0, LOWORD(lParam), HIWORD(lParam), DXGI_FORMAT_UNKNOWN, 0);
+                    self->CreateRenderTarget();
+                }
+                return 0;
+            case WM_SYSCOMMAND:
+                if ((wParam & 0xfff0) == SC_KEYMENU) return 0;
+                break;
+            case WM_KEYDOWN:
+                if (wParam == VK_ESCAPE) { ::PostQuitMessage(0); return 0; }
+                break;
+            case WM_DESTROY:
+                ::PostQuitMessage(0);
+                    return 0;
+            default:
+                break;
         }
         return ::DefWindowProc(hWnd, msg, wParam, lParam);
     }

@@ -33,6 +33,19 @@ struct ImGuiCrossPlatformLinux
         ctx.backendFlags = flags;
     }
 
+    inline void SetMinWindowSize(int w, int h)
+    {
+        SDL_SetWindowMinimumSize(ctx.window, w, h);  // SDL2 has this!
+    }
+
+    inline void SetMaxWindowSize(int w, int h)
+    {
+        SDL_SetWindowMaximumSize(ctx.window, w, h);  // SDL2 has this too!
+    }
+
+    inline void MaximizeWindow() { SDL_MaximizeWindow(ctx.window); }
+    inline void MinimizeWindow() { SDL_MinimizeWindow(ctx.window); }
+
     inline bool Init(const char* windowTitle, int width, int height, int /*fps*/)
     {
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
