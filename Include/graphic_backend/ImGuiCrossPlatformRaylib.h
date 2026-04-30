@@ -7,12 +7,12 @@
 
 struct RaylibContext
 {
-	int              width       = 0;
-	int              height      = 0;
-	int              fps         = 60;
-	const char*      title       = "";
-	Color            clearColor  = { 114, 144, 154, 255 };
-	bool             done        = false;
+	int width = 0;
+	int height = 0;
+	int fps = 60;
+	const char* title = "";
+	Color clearColor = { 114, 144, 154, 255 };
+	bool done = false;
 	UI::BackendFlags backendFlags = UI::BackendFlags::None;
 };
 
@@ -35,7 +35,10 @@ struct ImGuiCrossPlatformRaylib
 		InitWindow(width, height, windowTitle);
 		SetTargetFPS(fps);
 		rlImGuiSetup(true);
-
+		ImGuiIO& io = ImGui::GetIO();
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		return true;
 	}
 
@@ -68,4 +71,5 @@ struct ImGuiCrossPlatformRaylib
 		rlImGuiShutdown();
 		CloseWindow();
 	}
+
 };

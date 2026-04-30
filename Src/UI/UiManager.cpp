@@ -1,4 +1,8 @@
-#include "UiManager.h"
+#include "../../Include/UI/UiManager.h"
+
+#include <iostream>
+#include <ostream>
+
 #include "imgui_internal.h"
 using namespace UI;
 
@@ -20,7 +24,7 @@ void UIManager::AddAttachedPanel(std::initializer_list<Panel> panels, std::funct
 	if (floating) return;
 
 	m_panels.assign(panels.begin(), panels.end());
-	m_layoutFn          = std::move(layoutFn);
+	m_layoutFn = std::move(layoutFn);
 	m_layoutInitialized = false;
 }
 

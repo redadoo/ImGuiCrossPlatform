@@ -6,14 +6,16 @@
 #include <functional>
 
 #if defined(USE_RAYLIB)
-	#include "ImGuiCrossPlatformRaylib.h"
+	#include "../graphic_backend/ImGuiCrossPlatformRaylib.h"
+#elif defined(USE_GLFW)
+	#include "ImGuiCrossPlatformGLFW.h"
 #elif defined(__linux__)
 	#include "ImGuiCrossPlatformLinux.h"
 #elif defined(_WIN32)
 	#include "ImGuiCrossPlatformWin32.h"
 #endif
 
-#include "BackendFlags.h"
+#include "../graphic_backend/BackendFlags.h"
 
 namespace UI
 {
@@ -27,6 +29,8 @@ namespace UI
 	using BackendVariant = std::variant<
 	#if defined(USE_RAYLIB)
 		ImGuiCrossPlatformRaylib
+	#elif defined(USE_GLFW)
+		ImGuiCrossPlatformGLFW
 	#elif defined(__linux__)
 		ImGuiCrossPlatformLinux
 	#elif defined(_WIN32)

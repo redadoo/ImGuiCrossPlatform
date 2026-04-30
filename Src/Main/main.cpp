@@ -1,5 +1,5 @@
-#include "Platform.h"
-#include "UiManager.h"
+#include "../../Include/graphic_backend/Platform.h"
+#include "../../Include/UI/UiManager.h"
 #include "imgui_internal.h"
 
 PLATFORM_MAIN
@@ -27,7 +27,7 @@ PLATFORM_MAIN
 
 			ImGui::DockBuilderDockWindow("Main Panel", top);
 			ImGui::DockBuilderDockWindow("Log Banner", bottom);
-			ImGui::DockBuilderDockWindow("test",       right);
+			ImGui::DockBuilderDockWindow("test", right);
 		}
 	);
 
@@ -35,6 +35,7 @@ PLATFORM_MAIN
 	{
 		manager.StartDrawScene();
 
+		ImGui::ShowDemoWindow();
 		static bool p_open = true;
 		ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
 		ImGui::Begin("Dear ImGui Demo", &p_open);
