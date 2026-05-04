@@ -7,7 +7,7 @@
 
 #if defined(_WIN32) && !defined(USE_RAYLIB)
     #define PLATFORM_MAIN \
-        int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd)
+        int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)  // 👈 no parameter names = no warning
 #else
     #define PLATFORM_MAIN int main()
 #endif

@@ -39,18 +39,21 @@ void UIManager::SetMaxWindowSize(int width, int height)
 		b.SetMaxWindowSize(width, height);
 	});
 }
+
 void UIManager::MaximizeWindow()
 {
-	Visit([&](auto& b) {
-		b.MaximizeWindow();
-	});
+	bool floating = false;
+	Visit([&](auto& b) { floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels); });
+	if (floating) return;
+	Visit([](auto& b) { b.MaximizeWindow(); });
 }
 
 void UIManager::MinimizeWindow()
 {
-	Visit([&](auto& b) {
-		b.MinimizeWindow();
-	});
+	bool floating = false;
+	Visit([&](auto& b) { floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels); });
+	if (floating) return;
+	Visit([](auto& b) { b.MinimizeWindow(); });
 }
 
 void UIManager::DrawDockspace()

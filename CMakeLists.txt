@@ -3,21 +3,32 @@ project(ImGuiCrossPlatform LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 if(POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)
 endif()
 
-# ===== Options =====
+# ===== Options — declare FIRST before anything uses them =====
 option(USE_RAYLIB "Use Raylib as the UI backend" OFF)
 
-# General compile options (GCC/Clang only)
-if(NOT MSVC)
-    add_compile_options(-Wall -Wextra -Werror)
-    if(CMAKE_BUILD_TYPE STREQUAL "Release")
-        add_compile_options(-O3)
-    endif()
+message(STATUS "USE_RAYLIB = ${USE_RAYLIB}")  # 👈 add this to confirm it's picked up
+
+# ===== Compiler flags =====
+if(MSVC)
+    add_compile_options(
+            /W4
+            /WX
+            $<$<CONFIG:Release>:/O2>
+            $<$<CONFIG:Release>:/GL>
+    )
+    add_link_options(
+            $<$<CONFIG:Release>:/LTCG>
+    )
+else()
+    add_compile_options(
+            -Wall -Wextra -Werror
+            $<$<CONFIG:Release>:-O3>
+    )
 endif()
 
 # ===== Dependencies =====

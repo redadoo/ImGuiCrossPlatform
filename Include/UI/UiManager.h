@@ -43,7 +43,7 @@ namespace UI
 	class UIManager
 	{
 	public:
-		int  Initialize(int width, int height, const char* title, int fps);
+		int Initialize(int width, int height, const char* title, int fps);
 
 		void AddAttachedPanel(std::initializer_list<Panel> panels, std::function<void(ImGuiID)> layoutFn);
 
