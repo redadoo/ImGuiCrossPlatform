@@ -48,10 +48,8 @@ namespace UI
         int Initialize(int width, int height, const char* title, int fps)
         {
             bool ok = false;
-            Visit([&](auto& b) {
-                ok = b.Init(title, width, height, fps);
-            });
-
+            Visit([&](auto& b) { ok = b.Init(title, width, height, fps); });
+            m_initialized = ok;
             return ok ? 0 : 1;
         }
 
@@ -86,37 +84,24 @@ namespace UI
 
         void MaximizeWindow()
         {
-            bool floating = false;
-            Visit([&](auto& b) {
-                floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels);
-            });
-
-            if (floating) return;
-
             Visit([](auto& b) {
-                b.MaximizeWindow();
+                if (!HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels))
+                    b.MaximizeWindow();
             });
         }
 
         void MinimizeWindow()
         {
-            bool floating = false;
-            Visit([&](auto& b) {
-                floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels);
-            });
-
-            if (floating) return;
-
             Visit([](auto& b) {
-                b.MinimizeWindow();
+                if (!HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels))
+                    b.MinimizeWindow();
             });
         }
 
         void SetBackendFlags(BackendFlags flags)
         {
-            Visit([flags](auto& b) {
-                b.SetFlags(flags);
-            });
+            UI_ASSERT(!m_initialized, "SetBackendFlags must be called before Initialize.");
+            Visit([flags](auto& b) { b.SetFlags(flags); });
         }
 
         void StartDrawScene()
@@ -155,8 +140,9 @@ namespace UI
         std::vector<Panel> m_panels;
         std::function<void(ImGuiID)> m_layoutFn;
         bool m_layoutInitialized = false;
+        bool m_initialized = false;
 
-        void DrawDockspace()
+        inline void DrawDockspace()
         {
             const ImGuiViewport* vp = ImGui::GetMainViewport();
 
@@ -206,7 +192,7 @@ namespace UI
         }
 
         template<typename Fn>
-        auto Visit(Fn&& fn)
+        inline auto Visit(Fn&& fn)
         {
             return std::visit(std::forward<Fn>(fn), backend);
         }

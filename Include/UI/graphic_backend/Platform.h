@@ -6,8 +6,9 @@
 // ─── Platform entry point ─────────────────────────────────────────────────────
 
 #if defined(_WIN32) && !defined(USE_RAYLIB)
+    #include <Windows.h>
     #define PLATFORM_MAIN \
-        int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)  // 👈 no parameter names = no warning
+        int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #else
     #define PLATFORM_MAIN int main()
 #endif
@@ -15,7 +16,6 @@
 // ─── Assert / Warn ───────────────────────────────────────────────────────────
 
 #if defined(USE_RAYLIB)
-    // Raylib has its own logging + avoids Windows.h conflicts
     #include "raylib.h"
 
     #define UI_ASSERT(condition, msg)                                          \
@@ -31,7 +31,7 @@
         TraceLog(LOG_WARNING, "[WARN] %s", msg)
 
 #elif defined(_WIN32)
-    #include <Windows.h>
+    // Windows.h already included above for WinMain
 
     #define UI_ASSERT(condition, msg)                                          \
         do {                                                                   \
@@ -53,7 +53,6 @@
         MessageBoxA(nullptr, msg, "UIManager Warning", MB_OK | MB_ICONWARNING)
 
 #else
-    // Linux / other — stderr
     #define UI_ASSERT(condition, msg)                                          \
         do {                                                                   \
             if (!(condition)) {                                                \
@@ -80,5 +79,5 @@
         freopen_s(&fDummy, "CONOUT$", "w", stdout);
     }
 #else
-    inline void CreateConsole() {}  // raylib handles its own log output; Linux has a terminal
+    inline void CreateConsole() {}
 #endif

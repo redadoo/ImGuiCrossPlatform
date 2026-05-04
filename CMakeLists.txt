@@ -1,106 +1,78 @@
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.22)
 project(ImGuiCrossPlatform LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+option(USE_RAYLIB "Use Raylib backend" OFF)
+option(BUILD_EXAMPLE "Build example app" OFF)
 
-if(POLICY CMP0135)
-    cmake_policy(SET CMP0135 NEW)
-endif()
-
-# ===== Options — declare FIRST before anything uses them =====
-option(USE_RAYLIB "Use Raylib as the UI backend" OFF)
-
-message(STATUS "USE_RAYLIB = ${USE_RAYLIB}")  # 👈 add this to confirm it's picked up
-
-# ===== Compiler flags =====
-if(MSVC)
-    add_compile_options(
-            /W4
-            /WX
-            $<$<CONFIG:Release>:/O2>
-            $<$<CONFIG:Release>:/GL>
-    )
-    add_link_options(
-            $<$<CONFIG:Release>:/LTCG>
-    )
-else()
-    add_compile_options(
-            -Wall -Wextra -Werror
-            $<$<CONFIG:Release>:-O3>
-    )
-endif()
-
-# ===== Dependencies =====
 include(FetchContent)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/imgui.cmake)
 
-include(cmake/imgui.cmake)
-
+# ===== Backend setup =====
 if(USE_RAYLIB)
-    include(cmake/raylib.cmake)
-    include(cmake/rlimgui.cmake)
-else()
-    # Append platform-specific ImGui backend sources
-    if(UNIX)
-        target_sources(imgui PRIVATE
-                ${imgui_SOURCE_DIR}/backends/imgui_impl_sdl2.cpp
-                ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
-        )
-    elseif(WIN32)
-        target_sources(imgui PRIVATE
-                ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
-                ${imgui_SOURCE_DIR}/backends/imgui_impl_win32.cpp
-        )
-    endif()
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/raylib.cmake)
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/rlimgui.cmake)
+
+elseif(UNIX)
+    target_sources(imgui PRIVATE
+            ${imgui_SOURCE_DIR}/backends/imgui_impl_sdl2.cpp
+            ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+    )
+    find_package(OpenGL REQUIRED)
+    find_package(SDL2 REQUIRED)
+    target_link_libraries(imgui PRIVATE SDL2::SDL2 OpenGL::GL)
+
+elseif(WIN32)
+    target_sources(imgui PRIVATE
+            ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
+            ${imgui_SOURCE_DIR}/backends/imgui_impl_win32.cpp
+    )
 endif()
 
 target_include_directories(imgui PUBLIC
         ${imgui_SOURCE_DIR}
-        ${imgui_SOURCE_DIR}/Include
         ${imgui_SOURCE_DIR}/backends
 )
 
-# ===== Source files =====
-# All backends are header-only — no .cpp files needed per backend
-set(SOURCES
-        Src/main.cpp
-)
+# ===== Library — INTERFACE (header-only) =====
+add_library(ImGuiCrossPlatform INTERFACE)
+add_library(ImGuiCrossPlatform::ImGuiCrossPlatform ALIAS ImGuiCrossPlatform)
 
-# ===== Executable =====
-if(WIN32 AND NOT USE_RAYLIB)
-    add_executable(${PROJECT_NAME} WIN32 ${SOURCES})
-else()
-    add_executable(${PROJECT_NAME} ${SOURCES})
-endif()
+target_compile_features(ImGuiCrossPlatform INTERFACE cxx_std_20)
 
-# ===== Compile definitions =====
-if(USE_RAYLIB)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_RAYLIB)
-endif()
-
-# ===== Include directories =====
-target_include_directories(${PROJECT_NAME} PRIVATE
-        ${PROJECT_SOURCE_DIR}/Src
-        ${PROJECT_SOURCE_DIR}/Include
+target_include_directories(ImGuiCrossPlatform INTERFACE
+        ${CMAKE_CURRENT_SOURCE_DIR}/Include
         ${imgui_SOURCE_DIR}
         ${imgui_SOURCE_DIR}/backends
 )
 
-# ===== Link libraries =====
 if(USE_RAYLIB)
-    target_link_libraries(${PROJECT_NAME} PRIVATE imgui rlimgui raylib)
-else()
-    target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
-    if(UNIX)
-        find_package(OpenGL REQUIRED)
-        find_package(SDL2 REQUIRED)
+    target_compile_definitions(ImGuiCrossPlatform INTERFACE USE_RAYLIB)
+    target_link_libraries(ImGuiCrossPlatform INTERFACE imgui raylib rlimgui)
 
-        # Link SDL2 + OpenGL to imgui (THIS is the important fix)
-        target_link_libraries(imgui PRIVATE SDL2::SDL2 OpenGL::GL)
+elseif(UNIX)
+    target_link_libraries(ImGuiCrossPlatform INTERFACE imgui)
 
-        # Your executable can still link imgui
-        target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
-    endif()
+elseif(WIN32)
+    target_link_libraries(ImGuiCrossPlatform INTERFACE
+            imgui
+            d3d11
+            dxgi
+    )
 endif()
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+# ===== Example =====
+if(BUILD_EXAMPLE)
+    if(WIN32 AND NOT USE_RAYLIB)
+        add_executable(example WIN32 Src/main.cpp)
+    else()
+        add_executable(example Src/main.cpp)
+    endif()
+
+    target_link_libraries(example PRIVATE ImGuiCrossPlatform::ImGuiCrossPlatform)
+
+    if(MSVC)
+        target_compile_options(example PRIVATE /W4 /WX /wd4100)
+    elseif(NOT MSVC)
+        target_compile_options(example PRIVATE -Wall -Wextra -Werror)
+    endif()
+endif()
