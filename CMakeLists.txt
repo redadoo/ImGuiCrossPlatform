@@ -63,8 +63,7 @@ target_include_directories(imgui PUBLIC
 # ===== Source files =====
 # All backends are header-only — no .cpp files needed per backend
 set(SOURCES
-        Src/Main/main.cpp
-        Src/UI/UiManager.cpp
+        Src/main.cpp
 )
 
 # ===== Executable =====
