@@ -1,9 +1,6 @@
 #include "UI/UiManager.h"
-
-#include <iostream>
 #include <ostream>
 
-#include "imgui_internal.h"
 using namespace UI;
 
 int UIManager::Initialize(int width, int height, const char* title, int fps)
@@ -21,7 +18,8 @@ void UIManager::AddAttachedPanel(std::initializer_list<Panel> panels, std::funct
 {
 	bool floating = false;
 	Visit([&](auto& b) { floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels); });
-	if (floating) return;
+
+	UI_ASSERT(!floating, "AddAttachedPanel cannot be used with FloatingPanels flag set.");
 
 	m_panels.assign(panels.begin(), panels.end());
 	m_layoutFn = std::move(layoutFn);

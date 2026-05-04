@@ -6,16 +6,18 @@
 #include <functional>
 
 #if defined(USE_RAYLIB)
-	#include "../graphic_backend/ImGuiCrossPlatformRaylib.h"
+	#include "graphic_backend/ImGuiCrossPlatformRaylib.h"
 #elif defined(USE_GLFW)
-	#include "ImGuiCrossPlatformGLFW.h"
+	#include "graphic_backend/ImGuiCrossPlatformGLFW.h"
 #elif defined(__linux__)
-	#include "ImGuiCrossPlatformLinux.h"
+	#include "graphic_backend/ImGuiCrossPlatformLinux.h"
 #elif defined(_WIN32)
-	#include "ImGuiCrossPlatformWin32.h"
+	#include "graphic_backend/ImGuiCrossPlatformWin32.h"
 #endif
 
-#include "../graphic_backend/BackendFlags.h"
+#include "graphic_backend/BackendFlags.h"
+#include "imgui_internal.h"
+#include "graphic_backend/Platform.h"
 
 namespace UI
 {
