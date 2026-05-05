@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.22)
 project(ImGuiCrossPlatform LANGUAGES CXX)
 
 option(USE_RAYLIB "Use Raylib backend" OFF)
-option(BUILD_EXAMPLE "Build example app" OFF)
+
+message(STATUS "ImGuiCrossPlatform: USE_RAYLIB=${USE_RAYLIB}")
 
 include(FetchContent)
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/imgui.cmake)
@@ -26,6 +27,9 @@ elseif(WIN32)
             ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
             ${imgui_SOURCE_DIR}/backends/imgui_impl_win32.cpp
     )
+
+else()
+    message(FATAL_ERROR "ImGuiCrossPlatform: unsupported platform")
 endif()
 
 target_include_directories(imgui PUBLIC
@@ -33,7 +37,7 @@ target_include_directories(imgui PUBLIC
         ${imgui_SOURCE_DIR}/backends
 )
 
-# ===== Library — INTERFACE (header-only) =====
+# ===== Library =====
 add_library(ImGuiCrossPlatform INTERFACE)
 add_library(ImGuiCrossPlatform::ImGuiCrossPlatform ALIAS ImGuiCrossPlatform)
 
@@ -53,26 +57,5 @@ elseif(UNIX)
     target_link_libraries(ImGuiCrossPlatform INTERFACE imgui)
 
 elseif(WIN32)
-    target_link_libraries(ImGuiCrossPlatform INTERFACE
-            imgui
-            d3d11
-            dxgi
-    )
-endif()
-
-# ===== Example =====
-if(BUILD_EXAMPLE)
-    if(WIN32 AND NOT USE_RAYLIB)
-        add_executable(example WIN32 Src/main.cpp)
-    else()
-        add_executable(example Src/main.cpp)
-    endif()
-
-    target_link_libraries(example PRIVATE ImGuiCrossPlatform::ImGuiCrossPlatform)
-
-    if(MSVC)
-        target_compile_options(example PRIVATE /W4 /WX /wd4100)
-    elseif(NOT MSVC)
-        target_compile_options(example PRIVATE -Wall -Wextra -Werror)
-    endif()
+    target_link_libraries(ImGuiCrossPlatform INTERFACE imgui d3d11 dxgi)
 endif()
