@@ -53,6 +53,24 @@ namespace UI
             return ok ? 0 : 1;
         }
 
+        void AddPanel(std::string name, std::function<void()> drawFn, const ImGuiWindowFlags flags = 0)
+        {
+            m_panels.push_back({ std::move(name), std::move(drawFn), flags });
+        }
+
+        void SetLayout(std::function<void(ImGuiID)> layoutFn)
+        {
+            bool floating = false;
+            Visit([&](auto& b) {
+                floating = HasFlag(b.ctx.backendFlags, BackendFlags::FloatingPanels);
+            });
+
+            UI_ASSERT(!floating, "SetLayout cannot be used with FloatingPanels flag set.");
+
+            m_layoutFn = std::move(layoutFn);
+            m_layoutInitialized = false;
+        }
+
         void AddAttachedPanel(std::initializer_list<Panel> panels,
                               std::function<void(ImGuiID)> layoutFn)
         {
