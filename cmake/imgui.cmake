@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(IMGUI_VERSION 1.92.6)
+set(IMGUI_VERSION 1.92.7)
 
 FetchContent_Declare(
         imgui
