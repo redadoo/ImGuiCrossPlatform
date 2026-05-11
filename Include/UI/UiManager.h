@@ -45,6 +45,12 @@ namespace UI
     class UIManager
     {
     public:
+        template<typename Fn>
+        inline decltype(auto) Visit(Fn&& fn)
+        {
+            return std::visit(std::forward<Fn>(fn), backend);
+        }
+
         int Initialize(int width, int height, const char* title, int fps)
         {
             bool ok = false;
@@ -207,12 +213,6 @@ namespace UI
 
                 ImGui::End();
             }
-        }
-
-        template<typename Fn>
-        inline auto Visit(Fn&& fn)
-        {
-            return std::visit(std::forward<Fn>(fn), backend);
         }
     };
 }
