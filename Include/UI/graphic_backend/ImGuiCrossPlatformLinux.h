@@ -44,7 +44,23 @@ struct ImGuiCrossPlatformLinux
     }
 
     inline void MaximizeWindow() { SDL_MaximizeWindow(ctx.window); }
+
     inline void MinimizeWindow() { SDL_MinimizeWindow(ctx.window); }
+
+    inline void RestoreWindow()
+    {
+        SDL_RestoreWindow(ctx.window);
+    }
+
+    inline bool IsMaximized() const
+    {
+        return (SDL_GetWindowFlags(ctx.window) & SDL_WINDOW_MAXIMIZED) != 0;
+    }
+
+    inline void RequestQuit()
+    {
+        ctx.done = true;
+    }
 
     inline bool Init(const char* windowTitle, int width, int height, int /*fps*/)
     {

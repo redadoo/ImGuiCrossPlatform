@@ -53,7 +53,18 @@ struct ImGuiCrossPlatformWin32
     }
 
     inline void MaximizeWindow() { ::ShowWindow(ctx.hwnd, SW_MAXIMIZE); }
+
     inline void MinimizeWindow() { ::ShowWindow(ctx.hwnd, SW_MINIMIZE); }
+
+    inline bool IsMaximized() const
+    {
+        return ::IsZoomed(ctx.hwnd);
+    }
+
+    inline void RestoreWindow()
+    {
+        ::ShowWindow(ctx.hwnd, SW_RESTORE);
+    }
 
     inline void RequestQuit() { ctx.done = true; }
 

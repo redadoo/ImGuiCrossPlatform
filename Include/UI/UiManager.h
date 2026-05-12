@@ -92,6 +92,20 @@ namespace UI
             m_layoutInitialized = false;
         }
 
+        bool IsMaximized()
+        {
+            return Visit([](auto& b) {
+                return b.IsMaximized();
+            });
+        }
+
+        void RestoreWindow()
+        {
+            Visit([](auto& b) {
+                b.RestoreWindow();
+            });
+        }
+
         void SetMinWindowSize(int width, int height)
         {
             Visit([&](auto& b) {
