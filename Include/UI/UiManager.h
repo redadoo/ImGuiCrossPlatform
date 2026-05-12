@@ -345,7 +345,7 @@ namespace UI
 
                 if (panel.state == PanelState::Fullscreen)
                 {
-                    isPanelSet = false;
+                    panel.panelSet = false;
                     const ImVec2 screen = GetDesktopSize();
 
                     panel.currentSize = ImVec2(screen.x, screen.y);
