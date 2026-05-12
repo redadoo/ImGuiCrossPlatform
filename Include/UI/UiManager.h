@@ -348,36 +348,21 @@ namespace UI
                 if (panel.state == PanelState::Fullscreen)
                 {
                     panel.panelSet = false;
+                    ImGuiViewport* vp = ImGui::GetMainViewport();
 
-                    ImGuiWindow* window =
-                        ImGui::FindWindowByName(panel.name.c_str());
-
-                    const ImGuiViewport* vp =
-                        (window && window->Viewport)
-                        ? window->Viewport
-                        : ImGui::GetMainViewport();
+                    if (const ImGuiWindow* win = ImGui::FindWindowByName(panel.name.c_str()))
+                        vp = win->Viewport;
 
                     panel.currentPos  = vp->WorkPos;
                     panel.currentSize = vp->WorkSize;
 
-                    ImGui::SetNextWindowPos(
-                        vp->WorkPos,
-                        ImGuiCond_Always
-                    );
+                    ImGui::SetNextWindowPos(vp->WorkPos, ImGuiCond_Always);
+                    ImGui::SetNextWindowSize(vp->WorkSize, ImGuiCond_Always);
+                    ImGui::SetNextWindowViewport(vp->ID);
 
-                    ImGui::SetNextWindowSize(
-                        vp->WorkSize,
-                        ImGuiCond_Always
-                    );
-
-                    ImGui::SetNextWindowViewport(
-                        vp->ID
-                    );
-
-                    flags |=
-                        ImGuiWindowFlags_NoMove |
-                        ImGuiWindowFlags_NoResize |
-                        ImGuiWindowFlags_NoCollapse;
+                    flags |= ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_NoResize |
+                             ImGuiWindowFlags_NoCollapse;
                 }
                 else
                 {
