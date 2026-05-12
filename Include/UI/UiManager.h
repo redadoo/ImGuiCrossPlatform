@@ -28,7 +28,8 @@ namespace UI
         std::string name;
         std::function<void()> drawFn;
         ImGuiWindowFlags flags = 0;
-
+        ImVec2 size = ImVec2(0, 0);
+        ImVec2 pos = ImVec2(0, 0);
         bool fullscreen = false;
         bool minimized = false;
     };
@@ -62,9 +63,9 @@ namespace UI
             return ok ? 0 : 1;
         }
 
-        void AddPanel(std::string name, std::function<void()> drawFn, const ImGuiWindowFlags flags = 0)
+        void AddPanel(std::string name, std::function<void()> drawFn, const ImGuiWindowFlags flags = 0, const ImVec2 size = ImVec2(0, 0), const ImVec2 pos = ImVec2(0, 0))
         {
-            m_panels.push_back({ std::move(name), std::move(drawFn), flags });
+            m_panels.push_back({ std::move(name), std::move(drawFn), flags, size, pos });
         }
 
         void SetLayout(std::function<void(ImGuiID)> layoutFn)
@@ -278,7 +279,10 @@ namespace UI
             for (auto& panel : m_panels)
             {
                 if (panel.minimized)
-                    continue; // NON disegnare
+                    continue;
+
+                const bool hasCustomSize = panel.size.x > 0 && panel.size.y > 0;
+                const bool hasCustomPos  = panel.pos.x > 0 || panel.pos.y > 0;
 
                 if (panel.fullscreen)
                 {
@@ -286,14 +290,26 @@ namespace UI
 
                     ImGui::SetNextWindowPos({0, 0});
                     ImGui::SetNextWindowSize(screenSize);
+                }
+                else
+                {
+                    if (hasCustomPos)
+                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_Once);
 
-                    panel.flags |=
-                        ImGuiWindowFlags_NoMove |
-                        ImGuiWindowFlags_NoResize |
-                        ImGuiWindowFlags_NoCollapse;
+                    if (hasCustomSize)
+                        ImGui::SetNextWindowSize(panel.size, ImGuiCond_Once);
                 }
 
-                if (ImGui::Begin(panel.name.c_str(), nullptr, panel.flags))
+                ImGuiWindowFlags flags = panel.flags;
+
+                if (panel.fullscreen)
+                {
+                    flags |= ImGuiWindowFlags_NoMove |
+                             ImGuiWindowFlags_NoResize |
+                             ImGuiWindowFlags_NoCollapse;
+                }
+
+                if (ImGui::Begin(panel.name.c_str(), nullptr, flags))
                     panel.drawFn();
 
                 ImGui::End();
