@@ -332,7 +332,7 @@ namespace UI
                 }
 
                 if (ImGui::Begin(panel.name.c_str(), nullptr, flags)) {
-                    DrawPanelChrome();
+                    DrawPanelChrome(panel);
                     panel.drawFn();
                 }
 
