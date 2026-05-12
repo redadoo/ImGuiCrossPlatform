@@ -207,6 +207,16 @@ namespace UI
             }
         }
 
+        bool IsPanelFullscreen(const std::string& name)
+        {
+            for (const auto& p : m_panels)
+            {
+                if (p.name == name)
+                    return p.fullscreen;
+            }
+            return false;
+        }
+
         void RestorePanel(const std::string& name)
         {
             for (auto& p : m_panels)
