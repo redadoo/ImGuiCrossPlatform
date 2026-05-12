@@ -38,6 +38,9 @@ namespace UI
         ImVec2 size = ImVec2(0, 0);
         ImVec2 pos = ImVec2(0, 0);
         PanelState state = PanelState::Normal;
+        ImVec2 normalSize = ImVec2(0, 0);
+        ImVec2 normalPos  = ImVec2(0, 0);
+        bool sizeCaptured = false;
     };
 
     using BackendVariant = std::variant<
@@ -194,8 +197,19 @@ namespace UI
         void MaximizePanel(const std::string& name)
         {
             for (auto& p : m_panels)
+            {
                 if (p.name == name)
+                {
+                    if (p.state != PanelState::Fullscreen)
+                    {
+                        p.normalSize = p.size;
+                        p.normalPos  = p.pos;
+                        p.sizeCaptured = true;
+                    }
+
                     p.state = PanelState::Fullscreen;
+                }
+            }
         }
 
         void MinimizePanel(const std::string& name)
@@ -249,7 +263,7 @@ namespace UI
 
             const bool fs = (panel.state == PanelState::Fullscreen);
 
-            if (ImGui::Button(fs ? "❐" : "□", size))
+            if (ImGui::Button("[]", size))
             {
                 panel.state = fs ? PanelState::Normal : PanelState::Fullscreen;
             }
