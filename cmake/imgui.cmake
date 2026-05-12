@@ -22,10 +22,6 @@ if(NOT TARGET imgui)
     target_include_directories(imgui PUBLIC
             ${imgui_SOURCE_DIR}
     )
-
-    target_compile_definitions(imgui PUBLIC
-            IMGUI_ENABLE_TEST_ENGINE
-    )
 endif()
 
 add_library(imgui::imgui ALIAS imgui)
