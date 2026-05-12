@@ -162,6 +162,8 @@ namespace UI
         {
             UI_ASSERT(!m_initialized, "SetBackendFlags must be called before Initialize.");
             Visit([flags](auto& b) { b.SetFlags(flags); });
+            if (flags & BackendFlags::FloatingPanels)
+                isfloating = true;
         }
 
         ImVec2 GetDesktopSize()
