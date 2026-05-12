@@ -349,10 +349,10 @@ namespace UI
                 else
                 {
                     if (panel.pos.x != 0 || panel.pos.y != 0)
-                        ImGui::SetNextWindowPos(panel.pos);
+                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_Once);
 
                     if (panel.size.x != 0 || panel.size.y != 0)
-                        ImGui::SetNextWindowSize(panel.size);
+                        ImGui::SetNextWindowSize(panel.size, ImGuiCond_Once);
                 }
 
                 if (ImGui::Begin(panel.name.c_str(), nullptr, flags)) {
