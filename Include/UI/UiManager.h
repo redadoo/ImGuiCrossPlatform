@@ -38,9 +38,16 @@ namespace UI
         ImVec2 size = ImVec2(0, 0);
         ImVec2 pos = ImVec2(0, 0);
         PanelState state = PanelState::Normal;
+
         ImVec2 normalSize = ImVec2(0, 0);
         ImVec2 normalPos  = ImVec2(0, 0);
+
+        ImVec2 currentSize = ImVec2(0, 0);
+        ImVec2 currentPos  = ImVec2(0, 0);
+
         bool sizeCaptured = false;
+        bool panelSet = false;
+
     };
 
     using BackendVariant = std::variant<
@@ -72,8 +79,10 @@ namespace UI
             return ok ? 0 : 1;
         }
 
-        void AddPanel(std::string name, std::function<void()> drawFn, const ImGuiWindowFlags flags = 0, const ImVec2 size = ImVec2(0, 0), const ImVec2 pos = ImVec2(0, 0))
+        void AddPanel(std::string name, std::function<void()> drawFn, ImGuiWindowFlags flags = 0, const ImVec2 size = ImVec2(0, 0), const ImVec2 pos = ImVec2(0, 0))
         {
+            if (isFloating)
+                flags |= ImGuiWindowFlags_MenuBar;
             m_panels.push_back({ std::move(name), std::move(drawFn), flags, size, pos });
         }
 
@@ -153,7 +162,6 @@ namespace UI
         {
             UI_ASSERT(!m_initialized, "SetBackendFlags must be called before Initialize.");
             Visit([flags](auto& b) { b.SetFlags(flags); });
-            isFloating = (static_cast<unsigned int>(flags) & static_cast<unsigned int>(BackendFlags::FloatingPanels));
         }
 
         ImVec2 GetDesktopSize()
@@ -337,8 +345,10 @@ namespace UI
 
                 if (panel.state == PanelState::Fullscreen)
                 {
+                    isPanelSet = false;
                     const ImVec2 screen = GetDesktopSize();
 
+                    panel.currentSize = ImVec2(screen.x, screen.y);
                     ImGui::SetNextWindowPos({0, 0}, ImGuiCond_Always);
                     ImGui::SetNextWindowSize(screen, ImGuiCond_Always);
 
@@ -348,14 +358,21 @@ namespace UI
                 }
                 else
                 {
-                    if (panel.pos.x != 0 || panel.pos.y != 0)
-                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_Once);
+                    if (panel.pos.x != 0 || panel.pos.y != 0 && !panel.panelSet)
+                    {
+                        ImGui::SetNextWindowPos(panel.pos);
+                        panel.panelSet = true;
+                    }
 
-                    if (panel.size.x != 0 || panel.size.y != 0)
+                    if (panel.size.x != 0 || panel.size.y != 0 && !panel.panelSet)
+                    {
                         ImGui::SetNextWindowSize(panel.size, ImGuiCond_Once);
+                        panel.panelSet = true;
+                    }
                 }
 
-                if (ImGui::Begin(panel.name.c_str(), nullptr, flags)) {
+                if (ImGui::Begin(panel.name.c_str(), nullptr, flags))
+                {
                     DrawPanelChrome(panel);
                     panel.drawFn();
                 }
