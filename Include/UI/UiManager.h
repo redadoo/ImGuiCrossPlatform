@@ -23,6 +23,13 @@
 
 namespace UI
 {
+    enum class PanelState
+    {
+        Normal,
+        Minimized,
+        Fullscreen
+    };
+
     struct Panel
     {
         std::string name;
@@ -30,8 +37,7 @@ namespace UI
         ImGuiWindowFlags flags = 0;
         ImVec2 size = ImVec2(0, 0);
         ImVec2 pos = ImVec2(0, 0);
-        bool fullscreen = false;
-        bool minimized = false;
+        PanelState state = PanelState::Normal;
     };
 
     using BackendVariant = std::variant<
@@ -144,6 +150,7 @@ namespace UI
         {
             UI_ASSERT(!m_initialized, "SetBackendFlags must be called before Initialize.");
             Visit([flags](auto& b) { b.SetFlags(flags); });
+            isFloating = (static_cast<unsigned int>(flags) & static_cast<unsigned int>(BackendFlags::FloatingPanels));
         }
 
         ImVec2 GetDesktopSize()
@@ -187,54 +194,75 @@ namespace UI
         void MaximizePanel(const std::string& name)
         {
             for (auto& p : m_panels)
-            {
                 if (p.name == name)
-                {
-                    p.fullscreen = true;
-                    p.minimized = false;
-                }
-            }
+                    p.state = PanelState::Fullscreen;
         }
 
         void MinimizePanel(const std::string& name)
         {
             for (auto& p : m_panels)
-            {
                 if (p.name == name)
-                {
-                    p.minimized = true;
-                    p.fullscreen = false;
-                }
-            }
-        }
-
-        bool IsPanelFullscreen(const std::string& name)
-        {
-            for (const auto& p : m_panels)
-            {
-                if (p.name == name)
-                    return p.fullscreen;
-            }
-            return false;
+                    p.state = PanelState::Minimized;
         }
 
         void RestorePanel(const std::string& name)
         {
             for (auto& p : m_panels)
-            {
                 if (p.name == name)
-                {
-                    p.minimized = false;
-                    p.fullscreen = false;
-                }
-            }
+                    p.state = PanelState::Normal;
         }
+
+        bool IsPanelFullscreen(const std::string& name) const {
+            for (auto& p : m_panels)
+                if (p.name == name)
+                    return p.state == PanelState::Fullscreen;
+            return false;
+        }
+
     private:
         BackendVariant backend;
         std::vector<Panel> m_panels;
         std::function<void(ImGuiID)> m_layoutFn;
         bool m_layoutInitialized = false;
         bool m_initialized = false;
+        bool isFloating = false;
+
+        inline void DrawPanelChrome(Panel& panel) const {
+            if (!isFloating)
+                return;
+
+            if (!(panel.flags & ImGuiWindowFlags_MenuBar))
+                return;
+
+            if (!ImGui::BeginMenuBar())
+                return;
+
+            ImGui::TextUnformatted(panel.name.c_str());
+
+            constexpr float btnSize = 22.0f;
+            constexpr float spacing = 4.0f;
+            constexpr ImVec2 size(btnSize, btnSize);
+
+            constexpr float totalWidth = (btnSize * 2.0f) + spacing;
+
+            ImGui::SetCursorPosX(ImGui::GetWindowWidth() - totalWidth);
+
+            const bool fs = (panel.state == PanelState::Fullscreen);
+
+            if (ImGui::Button(fs ? "❐" : "□", size))
+            {
+                panel.state = fs ? PanelState::Normal : PanelState::Fullscreen;
+            }
+
+            ImGui::SameLine(0, spacing);
+
+            if (ImGui::Button("X", size))
+            {
+                panel.state = PanelState::Minimized;
+            }
+
+            ImGui::EndMenuBar();
+        }
 
         inline void DrawDockspace()
         {
@@ -278,39 +306,35 @@ namespace UI
 
             for (auto& panel : m_panels)
             {
-                if (panel.minimized)
+                if (panel.state == PanelState::Minimized)
                     continue;
-
-                const bool hasCustomSize = panel.size.x > 0 && panel.size.y > 0;
-                const bool hasCustomPos  = panel.pos.x > 0 || panel.pos.y > 0;
-
-                if (panel.fullscreen)
-                {
-                    const ImVec2 screenSize = GetDesktopSize();
-
-                    ImGui::SetNextWindowPos({0, 0});
-                    ImGui::SetNextWindowSize(screenSize);
-                }
-                else
-                {
-                    if (hasCustomPos)
-                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_Once);
-
-                    if (hasCustomSize)
-                        ImGui::SetNextWindowSize(panel.size, ImGuiCond_Once);
-                }
 
                 ImGuiWindowFlags flags = panel.flags;
 
-                if (panel.fullscreen)
+                if (panel.state == PanelState::Fullscreen)
                 {
+                    const ImVec2 screen = GetDesktopSize();
+
+                    ImGui::SetNextWindowPos({0, 0}, ImGuiCond_Always);
+                    ImGui::SetNextWindowSize(screen, ImGuiCond_Always);
+
                     flags |= ImGuiWindowFlags_NoMove |
                              ImGuiWindowFlags_NoResize |
                              ImGuiWindowFlags_NoCollapse;
                 }
+                else
+                {
+                    if (panel.pos.x != 0 || panel.pos.y != 0)
+                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_FirstUseEver);
 
-                if (ImGui::Begin(panel.name.c_str(), nullptr, flags))
+                    if (panel.size.x != 0 || panel.size.y != 0)
+                        ImGui::SetNextWindowSize(panel.size, ImGuiCond_FirstUseEver);
+                }
+
+                if (ImGui::Begin(panel.name.c_str(), nullptr, flags)) {
+                    DrawPanelChrome();
                     panel.drawFn();
+                }
 
                 ImGui::End();
             }
