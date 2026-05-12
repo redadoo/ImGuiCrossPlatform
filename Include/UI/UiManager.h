@@ -28,6 +28,9 @@ namespace UI
         std::string name;
         std::function<void()> drawFn;
         ImGuiWindowFlags flags = 0;
+
+        bool fullscreen = false;
+        bool minimized = false;
     };
 
     using BackendVariant = std::variant<
@@ -142,6 +145,13 @@ namespace UI
             Visit([flags](auto& b) { b.SetFlags(flags); });
         }
 
+        ImVec2 GetDesktopSize()
+        {
+            return Visit([](auto& b) {
+                return b.GetDesktopSize();
+            });
+        }
+
         void StartDrawScene()
         {
             Visit([](auto& b) {
@@ -173,6 +183,41 @@ namespace UI
             });
         }
 
+        void MaximizePanel(const std::string& name)
+        {
+            for (auto& p : m_panels)
+            {
+                if (p.name == name)
+                {
+                    p.fullscreen = true;
+                    p.minimized = false;
+                }
+            }
+        }
+
+        void MinimizePanel(const std::string& name)
+        {
+            for (auto& p : m_panels)
+            {
+                if (p.name == name)
+                {
+                    p.minimized = true;
+                    p.fullscreen = false;
+                }
+            }
+        }
+
+        void RestorePanel(const std::string& name)
+        {
+            for (auto& p : m_panels)
+            {
+                if (p.name == name)
+                {
+                    p.minimized = false;
+                    p.fullscreen = false;
+                }
+            }
+        }
     private:
         BackendVariant backend;
         std::vector<Panel> m_panels;
@@ -220,8 +265,24 @@ namespace UI
 
             ImGui::End();
 
-            for (const auto& panel : m_panels)
+            for (auto& panel : m_panels)
             {
+                if (panel.minimized)
+                    continue; // NON disegnare
+
+                if (panel.fullscreen)
+                {
+                    const ImVec2 screenSize = GetDesktopSize();
+
+                    ImGui::SetNextWindowPos({0, 0});
+                    ImGui::SetNextWindowSize(screenSize);
+
+                    panel.flags |=
+                        ImGuiWindowFlags_NoMove |
+                        ImGuiWindowFlags_NoResize |
+                        ImGuiWindowFlags_NoCollapse;
+                }
+
                 if (ImGui::Begin(panel.name.c_str(), nullptr, panel.flags))
                     panel.drawFn();
 

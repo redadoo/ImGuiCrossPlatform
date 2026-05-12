@@ -56,6 +56,14 @@ struct ImGuiCrossPlatformWin32
 
     inline void MinimizeWindow() { ::ShowWindow(ctx.hwnd, SW_MINIMIZE); }
 
+    inline ImVec2 GetDesktopSize() const
+    {
+        return ImVec2(
+            (float)::GetSystemMetrics(SM_CXSCREEN),
+            (float)::GetSystemMetrics(SM_CYSCREEN)
+        );
+    }
+
     inline bool IsMaximized() const
     {
         return ::IsZoomed(ctx.hwnd);

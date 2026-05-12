@@ -62,6 +62,17 @@ struct ImGuiCrossPlatformLinux
         ctx.done = true;
     }
 
+    inline ImVec2 GetDesktopSize() const
+    {
+        SDL_DisplayMode dm;
+        SDL_GetCurrentDisplayMode(0, &dm);
+
+        return ImVec2(
+            (float)dm.w,
+            (float)dm.h
+        );
+    }
+
     inline bool Init(const char* windowTitle, int width, int height, int /*fps*/)
     {
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
