@@ -222,8 +222,18 @@ namespace UI
         void RestorePanel(const std::string& name)
         {
             for (auto& p : m_panels)
+            {
                 if (p.name == name)
+                {
                     p.state = PanelState::Normal;
+
+                    if (p.sizeCaptured)
+                    {
+                        p.size = p.normalSize;
+                        p.pos  = p.normalPos;
+                    }
+                }
+            }
         }
 
         bool IsPanelFullscreen(const std::string& name) const {
@@ -339,10 +349,10 @@ namespace UI
                 else
                 {
                     if (panel.pos.x != 0 || panel.pos.y != 0)
-                        ImGui::SetNextWindowPos(panel.pos, ImGuiCond_FirstUseEver);
+                        ImGui::SetNextWindowPos(panel.pos);
 
                     if (panel.size.x != 0 || panel.size.y != 0)
-                        ImGui::SetNextWindowSize(panel.size, ImGuiCond_FirstUseEver);
+                        ImGui::SetNextWindowSize(panel.size);
                 }
 
                 if (ImGui::Begin(panel.name.c_str(), nullptr, flags)) {
